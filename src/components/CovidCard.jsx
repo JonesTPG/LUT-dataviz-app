@@ -6,23 +6,10 @@ import {
   Text,
   Stat,
   StatLabel,
-  StatNumber,
-  StatHelpText
+  StatNumber
 } from '@chakra-ui/core';
 
-const CovidCard = ({ data }) => {
-  const {
-    region,
-    date_of_first_case,
-    total_cases,
-    deaths,
-    over_65,
-    images,
-    population_density
-  } = data;
-
-  const baseUrl = process.env.REACT_APP_API_URL;
-
+const CovidCard = () => {
   console.log(data);
   return (
     <>

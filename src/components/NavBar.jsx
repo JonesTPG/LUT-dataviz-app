@@ -5,9 +5,10 @@ import {
   PseudoBox,
   useColorMode,
   IconButton,
-  Box,
-  Image
+  Box
 } from '@chakra-ui/core';
+
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -20,35 +21,34 @@ const Navbar = () => {
       align="center"
       color={textColor[colorMode]}
       justify="center"
-      align="center"
       fontSize={['md', 'lg', 'xl', 'xl']}
       h="7vh"
+      minH="50px"
       boxShadow="md"
       p={2}
     >
-      <Flex w={['50vw', '50vw', '50vw', '50vw']}>
+      <Flex w={['100vw', '100vw', '100vw', '100vw']} justify="center">
         <Stack
           spacing={8}
           color={textColor[colorMode]}
           justify="center"
-          align="center"
           isInline
         >
-          <PseudoBox position="relative">
-            <a>Home</a>
-          </PseudoBox>
-          <PseudoBox position="relative">
-            <a>All Cards</a>
-          </PseudoBox>
-          <PseudoBox position="relative">
-            <a>XXXX</a>
-          </PseudoBox>
-          <PseudoBox position="relative">
-            <a>XXXX</a>
-          </PseudoBox>
+          <Link to="/">
+            <PseudoBox position="relative" p={10}>
+              <p>Home</p>
+            </PseudoBox>
+          </Link>
+          <Link to="cards">
+            <PseudoBox position="relative" p={10}>
+              <p>All Cards</p>
+            </PseudoBox>
+          </Link>
         </Stack>
         <Box>
           <IconButton
+            mt={8}
+            ml={5}
             rounded="full"
             onClick={toggleColorMode}
             icon={colorMode === 'light' ? 'moon' : 'sun'}

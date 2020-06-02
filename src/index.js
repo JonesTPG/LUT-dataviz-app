@@ -9,16 +9,20 @@ import client from './utils/apolloClient';
 import { theme, CSSReset } from '@chakra-ui/core';
 import { ThemeProvider, ColorModeProvider } from '@chakra-ui/core';
 
+import { BrowserRouter } from 'react-router-dom';
+
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <ThemeProvider theme={theme}>
-        <ColorModeProvider>
-          <CSSReset />
-          <App />
-        </ColorModeProvider>
-      </ThemeProvider>
-    </ApolloProvider>
+    <BrowserRouter>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <ColorModeProvider>
+            <CSSReset />
+            <App />
+          </ColorModeProvider>
+        </ThemeProvider>
+      </ApolloProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

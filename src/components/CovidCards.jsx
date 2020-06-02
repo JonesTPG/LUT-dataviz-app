@@ -1,15 +1,15 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
-import { Flex } from '@chakra-ui/core';
+import { Text, Flex, Stack } from '@chakra-ui/core';
 
-import CovidCard from './CovidCard';
-import ScienceCard from './ScienceCard';
+import CardInfo from './CardInfo';
 
 const CovidCards = () => {
   const GET_COVID_CARDS = gql`
     query {
       covidCards {
+        id
         region
         date_of_first_case
         total_cases
@@ -17,6 +17,7 @@ const CovidCards = () => {
         over_65
         population_density
         title
+        description
         images {
           url
         }
@@ -31,11 +32,15 @@ const CovidCards = () => {
 
   return (
     <>
-      <Flex direction={['column', 'column', 'column', 'column']}>
-        {data.covidCards.map((covidCard) => (
-          <CovidCard key={covidCard.region} data={covidCard}></CovidCard>
-        ))}
+      <Flex w="100vw" justify="center" p={10} direction="row">
+        <Text fontSize="4xl">Browse all the available cards here</Text>
       </Flex>
+
+      <Stack justifyItems="center">
+        {data.covidCards.map((covidCard) => (
+          <CardInfo key={covidCard.region} data={covidCard}></CardInfo>
+        ))}
+      </Stack>
     </>
   );
 };
