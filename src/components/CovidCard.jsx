@@ -55,7 +55,6 @@ const CovidCard = (props) => {
     region,
     total_cases
   } = data.covidCard;
-  console.log(data);
 
   return (
     <>
