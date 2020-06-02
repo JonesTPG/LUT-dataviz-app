@@ -39,7 +39,7 @@ const Navbar = () => {
               <p>Home</p>
             </PseudoBox>
           </Link>
-          <Link to="cards">
+          <Link to="/cards">
             <PseudoBox position="relative" p={10}>
               <p>All Cards</p>
             </PseudoBox>
