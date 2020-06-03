@@ -16,7 +16,6 @@ const Navbar = () => {
   const textColor = { light: 'black', dark: 'gray.100' };
   return (
     <Flex
-      w="100vw"
       bg={bgColor[colorMode]}
       align="center"
       color={textColor[colorMode]}
@@ -27,36 +26,28 @@ const Navbar = () => {
       boxShadow="md"
       p={2}
     >
-      <Flex w={['100vw', '100vw', '100vw', '100vw']} justify="center">
-        <Stack
-          spacing={8}
-          color={textColor[colorMode]}
-          justify="center"
-          isInline
+      <Stack spacing={8} color={textColor[colorMode]} justify="center" isInline>
+        <Link to="/">
+          <PseudoBox position="relative" p={10}>
+            <p>Home</p>
+          </PseudoBox>
+        </Link>
+        <Link to="/cards">
+          <PseudoBox position="relative" p={10}>
+            <p>All Cards</p>
+          </PseudoBox>
+        </Link>
+      </Stack>
+      <Box>
+        <IconButton
+          ml={5}
+          rounded="full"
+          onClick={toggleColorMode}
+          icon={colorMode === 'light' ? 'moon' : 'sun'}
         >
-          <Link to="/">
-            <PseudoBox position="relative" p={10}>
-              <p>Home</p>
-            </PseudoBox>
-          </Link>
-          <Link to="/cards">
-            <PseudoBox position="relative" p={10}>
-              <p>All Cards</p>
-            </PseudoBox>
-          </Link>
-        </Stack>
-        <Box>
-          <IconButton
-            mt={8}
-            ml={5}
-            rounded="full"
-            onClick={toggleColorMode}
-            icon={colorMode === 'light' ? 'moon' : 'sun'}
-          >
-            Change Color Mode
-          </IconButton>
-        </Box>
-      </Flex>
+          Change Color Mode
+        </IconButton>
+      </Box>
     </Flex>
   );
 };

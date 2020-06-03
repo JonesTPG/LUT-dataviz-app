@@ -11,7 +11,7 @@ const CardInfo = ({ data }) => {
     <>
       <Box
         margin="0 auto"
-        w={['80vw', '60vw', '40vw', '40vw']}
+        w={['80%', '60%', '40%', '40%']}
         borderWidth="1px"
         rounded="lg"
       >

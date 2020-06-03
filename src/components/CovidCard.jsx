@@ -2,16 +2,18 @@ import React from 'react';
 import {
   Box,
   Image,
-  Flex,
+  Button,
   Text,
+  Divider,
   Stat,
   StatLabel,
-  StatNumber
+  StatNumber,
+  Skeleton
 } from '@chakra-ui/core';
 
 import { gql, useQuery } from '@apollo/client';
 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import { useApiUrl } from '../hooks/common';
 
@@ -41,7 +43,12 @@ const CovidCard = (props) => {
     variables: { id: id }
   });
 
-  if (loading) return 'Loading...';
+  if (loading)
+    return (
+      <>
+        <Skeleton h={20}></Skeleton>
+      </>
+    );
   if (error) return `${error.message}`;
 
   let {
@@ -58,46 +65,55 @@ const CovidCard = (props) => {
 
   return (
     <>
-      <Flex
-        justifyContent="center"
-        direction={['column', 'column', 'column', 'row']}
+      <Box
+        w={['90%', '70%', '60%', '30%']}
+        borderWidth="1px"
+        rounded="20px"
+        boxShadow="sm"
+        bg="gray.200"
+        m="0 auto"
+        mt="10vh"
       >
-        <Box
-          w="400px"
-          borderWidth="1px"
-          rounded="lg"
-          overflow="hidden"
-          alignItems="center"
+        <Text
+          textAlign="center"
+          mt={5}
+          fontSize="xl"
+          fontWeight="semibold"
+          lineHeight="short"
         >
-          <Flex direction="column">
-            <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-              {region}
-            </Text>
-            <Image mt={3} rounded="md" src={API_URL + images[0].url} />
+          {region}
+        </Text>
+        <Image w="100%" mt={3} rounded="md" src={API_URL + images[0].url} />
 
-            <Stat>
-              <StatLabel>Total cases</StatLabel>
-              <StatNumber>{total_cases}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Deaths</StatLabel>
-              <StatNumber>{deaths}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Date of first case</StatLabel>
-              <StatNumber>{date_of_first_case}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Population density</StatLabel>
-              <StatNumber>{population_density}</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>% > 65 years old</StatLabel>
-              <StatNumber>{(over_65 * 100).toPrecision(4)}</StatNumber>
-            </Stat>
-          </Flex>
+        <Stat textAlign="center">
+          <StatLabel>Total cases</StatLabel>
+          <StatNumber>{total_cases}</StatNumber>
+        </Stat>
+        <Stat textAlign="center">
+          <StatLabel>Deaths</StatLabel>
+          <StatNumber>{deaths}</StatNumber>
+        </Stat>
+        <Stat textAlign="center">
+          <StatLabel>Date of first case</StatLabel>
+          <StatNumber>{date_of_first_case}</StatNumber>
+        </Stat>
+        <Stat textAlign="center">
+          <StatLabel>Population density</StatLabel>
+          <StatNumber>{population_density}</StatNumber>
+        </Stat>
+        <Stat textAlign="center" t>
+          <StatLabel>% > 65 years old</StatLabel>
+          <StatNumber>{(over_65 * 100).toPrecision(4)}</StatNumber>
+        </Stat>
+      </Box>
+
+      <Divider></Divider>
+
+      <Link to={'/cards'}>
+        <Box textAlign="center">
+          <Button>Show cards</Button>
         </Box>
-      </Flex>
+      </Link>
     </>
   );
 };
