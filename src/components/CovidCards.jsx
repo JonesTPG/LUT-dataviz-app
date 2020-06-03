@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
-import { Text, Flex, Stack } from '@chakra-ui/core';
+import { Box, Text, Flex } from '@chakra-ui/core';
 
 import CardInfo from './CardInfo';
 
@@ -36,11 +36,11 @@ const CovidCards = () => {
         <Text fontSize="4xl">Browse all the available cards here</Text>
       </Flex>
 
-      <Stack justifyItems="center">
+      <Box className="test" textAlign="center">
         {data.covidCards.map((covidCard) => (
           <CardInfo key={covidCard.region} data={covidCard}></CardInfo>
         ))}
-      </Stack>
+      </Box>
     </>
   );
 };

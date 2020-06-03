@@ -9,7 +9,12 @@ const CardInfo = ({ data }) => {
 
   return (
     <>
-      <Box w="40vw" borderWidth="1px" rounded="lg">
+      <Box
+        margin="0 auto"
+        w={['80vw', '60vw', '40vw', '40vw']}
+        borderWidth="1px"
+        rounded="lg"
+      >
         <Text fontSize="xl" fontWeight="semibold">
           {title}
         </Text>
