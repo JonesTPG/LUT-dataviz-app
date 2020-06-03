@@ -32,7 +32,7 @@ const CovidCards = () => {
 
   return (
     <>
-      <Flex w="100vw" justify="center" p={10} direction="row">
+      <Flex justify="center" p={10} direction="row">
         <Text fontSize="4xl">Browse all the available cards here</Text>
       </Flex>
 
