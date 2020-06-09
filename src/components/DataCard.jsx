@@ -17,21 +17,21 @@ import { useParams, Link } from 'react-router-dom';
 
 import { useApiUrl } from '../hooks/common';
 
-const CovidCard = (props) => {
+const DataCard = (props) => {
   const { id } = useParams();
   const API_URL = useApiUrl();
 
-  const GET_COVID_CARD = gql`
-    query covidCard($id: ID!) {
-      covidCard(id: $id) {
-        region
-        date_of_first_case
-        total_cases
-        deaths
-        over_65
-        population_density
-        title
+  const GET_DATA_CARD = gql`
+    query dataCard($id: ID!) {
+      dataCard(id: $id) {
+        name
         description
+        custom_stat_1
+        custom_stat_2
+        custom_stat_3
+        custom_stat_4
+        custom_stat_5
+        custom_stat_6
         images {
           url
         }
@@ -39,7 +39,7 @@ const CovidCard = (props) => {
     }
   `;
 
-  const { loading, error, data } = useQuery(GET_COVID_CARD, {
+  const { loading, error, data } = useQuery(GET_DATA_CARD, {
     variables: { id: id }
   });
 
@@ -52,16 +52,16 @@ const CovidCard = (props) => {
   if (error) return `${error.message}`;
 
   let {
-    title,
-    date_of_first_case,
-    deaths,
+    name,
     description,
-    images,
-    over_65,
-    population_density,
-    region,
-    total_cases
-  } = data.covidCard;
+    custom_stat_1,
+    custom_stat_2,
+    custom_stat_3,
+    custom_stat_4,
+    custom_stat_5,
+    custom_stat_6,
+    images
+  } = data.dataCard;
 
   return (
     <>
@@ -81,29 +81,40 @@ const CovidCard = (props) => {
           fontWeight="semibold"
           lineHeight="short"
         >
-          {region}
+          {name}
         </Text>
-        <Image w="100%" mt={3} rounded="md" src={API_URL + images[0].url} />
+        <Text textAlign="center" mt={5}>
+          {description}
+        </Text>
+        {images.length === 1 ? (
+          <Image w="100%" mt={3} rounded="md" src={API_URL + images[0].url} />
+        ) : (
+          <p>no image</p>
+        )}
 
         <Stat textAlign="center">
-          <StatLabel>Total cases</StatLabel>
-          <StatNumber>{total_cases}</StatNumber>
+          <StatLabel>custom 1</StatLabel>
+          <StatNumber>{custom_stat_1}</StatNumber>
         </Stat>
         <Stat textAlign="center">
-          <StatLabel>Deaths</StatLabel>
-          <StatNumber>{deaths}</StatNumber>
+          <StatLabel>custom 2</StatLabel>
+          <StatNumber>{custom_stat_2}</StatNumber>
         </Stat>
         <Stat textAlign="center">
-          <StatLabel>Date of first case</StatLabel>
-          <StatNumber>{date_of_first_case}</StatNumber>
+          <StatLabel>custom 3</StatLabel>
+          <StatNumber>{custom_stat_3}</StatNumber>
         </Stat>
         <Stat textAlign="center">
-          <StatLabel>Population density</StatLabel>
-          <StatNumber>{population_density}</StatNumber>
+          <StatLabel>custom 4</StatLabel>
+          <StatNumber>{custom_stat_4}</StatNumber>
         </Stat>
         <Stat textAlign="center" t>
-          <StatLabel>% > 65 years old</StatLabel>
-          <StatNumber>{(over_65 * 100).toPrecision(4)}</StatNumber>
+          <StatLabel>custom 5</StatLabel>
+          <StatNumber>{custom_stat_5}</StatNumber>
+        </Stat>
+        <Stat textAlign="center" t>
+          <StatLabel>custom 6</StatLabel>
+          <StatNumber>{custom_stat_6}</StatNumber>
         </Stat>
       </Box>
 
@@ -118,4 +129,4 @@ const CovidCard = (props) => {
   );
 };
 
-export default CovidCard;
+export default DataCard;
