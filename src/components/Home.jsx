@@ -13,6 +13,7 @@ const Home = () => {
       <Link to={'/cards'}>
         <Box textAlign="center">
           <Button>Show cards</Button>
+          <Button>Show collections</Button>
         </Box>
       </Link>
     </>

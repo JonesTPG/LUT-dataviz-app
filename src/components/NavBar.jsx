@@ -32,22 +32,26 @@ const Navbar = () => {
             <p>Home</p>
           </PseudoBox>
         </Link>
+        <Link to="/collections">
+          <PseudoBox position="relative" p={10}>
+            <p>All Collections</p>
+          </PseudoBox>
+        </Link>
         <Link to="/cards">
           <PseudoBox position="relative" p={10}>
             <p>All Cards</p>
           </PseudoBox>
         </Link>
+        <Box p={8}>
+          <IconButton
+            rounded="full"
+            onClick={toggleColorMode}
+            icon={colorMode === 'light' ? 'moon' : 'sun'}
+          >
+            Change Color Mode
+          </IconButton>
+        </Box>
       </Stack>
-      <Box>
-        <IconButton
-          ml={5}
-          rounded="full"
-          onClick={toggleColorMode}
-          icon={colorMode === 'light' ? 'moon' : 'sun'}
-        >
-          Change Color Mode
-        </IconButton>
-      </Box>
     </Flex>
   );
 };
