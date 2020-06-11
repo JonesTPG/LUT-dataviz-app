@@ -22,7 +22,7 @@ The local environment assumes that the backend is located at localhost:1337. You
 
 .env.development.local
 
-file in the root of application and changing the variable REACT_APP_API_URL.
+file in the root of repository and changing the variable REACT_APP_API_URL.
 
 1. git clone https://github.com/JonesTPG/LUT-dataviz-app
 
