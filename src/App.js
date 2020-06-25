@@ -1,8 +1,10 @@
 import React from 'react';
 import CovidCards from './components/CovidCards';
 import Navbar from './components/NavBar';
-import Home from './components/Home';
+import Welcome from './components/Welcome';
 import CovidCard from './components/CovidCard';
+import Assignment from './components/Assignment';
+import Survey from './components/Survey';
 
 import { Route, Switch } from 'react-router';
 
@@ -11,7 +13,14 @@ let App = () => {
     <>
       <Navbar />
       <Switch>
-        <Route exact path="/" render={() => <Home></Home>} />
+        <Route exact path="/" render={() => <Welcome></Welcome>} />
+        <Route
+          exact
+          path="/assignment"
+          render={() => <Assignment></Assignment>}
+        />
+        <Route exact path="/survey" render={() => <Survey></Survey>} />
+
         <Route exact path="/cards" render={() => <CovidCards></CovidCards>} />
         <Route path="/cards/:id" render={() => <CovidCard></CovidCard>} />
       </Switch>
