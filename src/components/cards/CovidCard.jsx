@@ -15,7 +15,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import { useParams, Link } from 'react-router-dom';
 
-import { useApiUrl } from '../hooks/common';
+import { useApiUrl } from '../../hooks/common';
 
 const CovidCard = (props) => {
   const { id } = useParams();

@@ -1,8 +1,8 @@
 import React from 'react';
-import CovidCards from './components/CovidCards';
+import CovidCards from './components/cards/CovidCards';
 import Navbar from './components/NavBar';
 import Welcome from './components/Welcome';
-import CovidCard from './components/CovidCard';
+import CovidCard from './components/cards/CovidCard';
 import Assignment from './components/Assignment';
 import Survey from './components/Survey';
 

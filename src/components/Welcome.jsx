@@ -16,8 +16,8 @@ const Welcome = () => {
         </Box>
       </Link>
       <Link to={'/cards'}>
-        <Box textAlign="center">
-          <Button>Show cards</Button>
+        <Box mt={15} textAlign="center">
+          <Button>Show cards (remove)</Button>
         </Box>
       </Link>
     </>
