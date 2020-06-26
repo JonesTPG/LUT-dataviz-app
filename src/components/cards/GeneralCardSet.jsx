@@ -1,24 +1,23 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
+import CovidCard from './CovidCard';
 
-import { Box, Text, Flex } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/core';
 
-import CardInfo from './CardInfo';
-
-const CovidCards = () => {
+const GeneralCardSet = () => {
   const GET_COVID_CARDS = gql`
-    query {
+    query covidCards {
       covidCards {
         id
         region
+        timespan
         date_of_first_case
-        total_cases
-        deaths
         over_65
         population_density
-        title
-        description
-        images {
+        chart {
+          url
+        }
+        timespan_image {
           url
         }
       }
@@ -29,20 +28,17 @@ const CovidCards = () => {
 
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
+  console.log(data);
 
   return (
     <>
-      <Flex justify="center" p={10} direction="row">
-        <Text fontSize="4xl">Browse all the available cards here</Text>
-      </Flex>
-
-      <Box className="test" textAlign="center">
+      <Box textAlign="center">
         {data.covidCards.map((covidCard) => (
-          <CardInfo key={covidCard.region} data={covidCard}></CardInfo>
+          <CovidCard key={covidCard.region} data={covidCard}></CovidCard>
         ))}
       </Box>
     </>
   );
 };
 
-export default CovidCards;
+export default GeneralCardSet;

@@ -11,57 +11,20 @@ import {
   Skeleton
 } from '@chakra-ui/core';
 
-import { gql, useQuery } from '@apollo/client';
-
-import { useParams, Link } from 'react-router-dom';
-
 import { useApiUrl } from '../../hooks/common';
 
-const CovidCard = (props) => {
-  const { id } = useParams();
+const CovidCard = ({ data }) => {
   const API_URL = useApiUrl();
-
-  const GET_COVID_CARD = gql`
-    query covidCard($id: ID!) {
-      covidCard(id: $id) {
-        region
-        date_of_first_case
-        total_cases
-        deaths
-        over_65
-        population_density
-        title
-        description
-        images {
-          url
-        }
-      }
-    }
-  `;
-
-  const { loading, error, data } = useQuery(GET_COVID_CARD, {
-    variables: { id: id }
-  });
-
-  if (loading)
-    return (
-      <>
-        <Skeleton h={20}></Skeleton>
-      </>
-    );
-  if (error) return `${error.message}`;
 
   let {
     title,
     date_of_first_case,
-    deaths,
-    description,
-    images,
+    chart,
     over_65,
     population_density,
     region,
     total_cases
-  } = data.covidCard;
+  } = data;
 
   return (
     <>
@@ -83,16 +46,13 @@ const CovidCard = (props) => {
         >
           {region}
         </Text>
-        <Image w="100%" mt={3} rounded="md" src={API_URL + images[0].url} />
+        <Image w="100%" mt={3} rounded="md" src={API_URL + chart.url} />
 
         <Stat textAlign="center">
           <StatLabel>Total cases</StatLabel>
           <StatNumber>{total_cases}</StatNumber>
         </Stat>
-        <Stat textAlign="center">
-          <StatLabel>Deaths</StatLabel>
-          <StatNumber>{deaths}</StatNumber>
-        </Stat>
+
         <Stat textAlign="center">
           <StatLabel>Date of first case</StatLabel>
           <StatNumber>{date_of_first_case}</StatNumber>
@@ -106,14 +66,6 @@ const CovidCard = (props) => {
           <StatNumber>{(over_65 * 100).toPrecision(4)}</StatNumber>
         </Stat>
       </Box>
-
-      <Divider></Divider>
-
-      <Link to={'/cards'}>
-        <Box textAlign="center">
-          <Button>Show cards</Button>
-        </Box>
-      </Link>
     </>
   );
 };

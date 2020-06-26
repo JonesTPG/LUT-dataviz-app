@@ -1,5 +1,5 @@
 import React from 'react';
-import CovidCards from './components/cards/CovidCards';
+import GeneralCardSet from './components/cards/GeneralCardSet';
 import Navbar from './components/NavBar';
 import Welcome from './components/Welcome';
 import CovidCard from './components/cards/CovidCard';
@@ -21,7 +21,11 @@ let App = () => {
         />
         <Route exact path="/survey" render={() => <Survey></Survey>} />
 
-        <Route exact path="/cards" render={() => <CovidCards></CovidCards>} />
+        <Route
+          exact
+          path="/cards"
+          render={() => <GeneralCardSet></GeneralCardSet>}
+        />
         <Route path="/cards/:id" render={() => <CovidCard></CovidCard>} />
       </Switch>
     </>
