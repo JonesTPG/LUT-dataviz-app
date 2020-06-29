@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
+
+import GeneralCardSet from './cards/GeneralCardSet';
 
 const Assignment = () => {
   let [value, setValue] = React.useState('');
@@ -9,15 +11,20 @@ const Assignment = () => {
     setValue(inputValue);
   };
 
+  let handleSubmit = () => {
+    console.log('submit');
+    /* check here if text is long enough etc... */
+    console.log(value);
+    /* update state and redirect user to survey page */
+  };
+
   return (
     <>
       <Flex justify="center" p={10} direction="row">
         <Text fontSize="4xl">Complete the following assignment</Text>
       </Flex>
 
-      <Flex justify="center" mb={10} direction="row">
-        <p>Placeholder for cards</p>
-      </Flex>
+      <GeneralCardSet></GeneralCardSet>
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">
@@ -33,7 +40,9 @@ const Assignment = () => {
         />
       </Flex>
       <Box textAlign="center">
-        <Button mt={15}>Submit</Button>
+        <Button onClick={handleSubmit} mt={15}>
+          Submit
+        </Button>
       </Box>
     </>
   );
