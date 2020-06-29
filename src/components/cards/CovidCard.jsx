@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  Box,
-  Image,
-  Button,
-  Text,
-  Divider,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Skeleton
-} from '@chakra-ui/core';
+import { Box, Image, Text, Stat, StatLabel, StatNumber } from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
@@ -17,13 +7,12 @@ const CovidCard = ({ data }) => {
   const API_URL = useApiUrl();
 
   let {
-    title,
     date_of_first_case,
     chart,
     over_65,
     population_density,
     region,
-    total_cases
+    cases
   } = data;
 
   return (
@@ -50,7 +39,7 @@ const CovidCard = ({ data }) => {
 
         <Stat textAlign="center">
           <StatLabel>Total cases</StatLabel>
-          <StatNumber>{total_cases}</StatNumber>
+          <StatNumber>{cases}</StatNumber>
         </Stat>
 
         <Stat textAlign="center">

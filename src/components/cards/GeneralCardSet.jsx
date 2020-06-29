@@ -13,6 +13,7 @@ const GeneralCardSet = () => {
         timespan
         date_of_first_case
         over_65
+        cases
         population_density
         chart {
           url
