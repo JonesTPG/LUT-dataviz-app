@@ -19,13 +19,12 @@ const CovidCard = ({ data }) => {
   return (
     <>
       <Box
-        w={['90%', '70%', '60%', '30%']}
+        w={['100%', '100%', '48%', '32%']}
+        mb={5}
         borderWidth="1px"
         rounded="20px"
         boxShadow="sm"
         bg="gray.200"
-        m="0 auto"
-        mt="10vh"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
           {region}

@@ -2,7 +2,7 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import CovidCard from './CovidCard';
 
-import { Box } from '@chakra-ui/core';
+import { Box, Flex } from '@chakra-ui/core';
 
 const GeneralCardSet = () => {
   const GET_COVID_CARDS = gql`
@@ -35,9 +35,11 @@ const GeneralCardSet = () => {
   return (
     <>
       <Box textAlign="center">
-        {data.covidCards.map((covidCard) => (
-          <CovidCard key={covidCard.region} data={covidCard}></CovidCard>
-        ))}
+        <Flex wrap="wrap" p={[3, 5, 10, 10]} justifyContent="space-between">
+          {data.covidCards.map((covidCard) => (
+            <CovidCard key={covidCard.region} data={covidCard}></CovidCard>
+          ))}
+        </Flex>
       </Box>
     </>
   );
