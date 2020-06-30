@@ -8,8 +8,6 @@ import {
   Box
 } from '@chakra-ui/core';
 
-import { Link } from 'react-router-dom';
-
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bgColor = { light: 'gray.300', dark: 'gray.600' };
