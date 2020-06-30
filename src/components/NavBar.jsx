@@ -27,21 +27,17 @@ const Navbar = () => {
       p={2}
     >
       <Stack spacing={8} color={textColor[colorMode]} justify="center" isInline>
-        <Link to="/">
-          <PseudoBox position="relative" p={10}>
-            <p>Welcome</p>
-          </PseudoBox>
-        </Link>
-        <Link to="/assignment">
-          <PseudoBox position="relative" p={10}>
-            <p>Assignment</p>
-          </PseudoBox>
-        </Link>
-        <Link to="/survey">
-          <PseudoBox position="relative" p={10}>
-            <p>Survey</p>
-          </PseudoBox>
-        </Link>
+        <PseudoBox position="relative" p={10}>
+          <p>Welcome</p>
+        </PseudoBox>
+
+        <PseudoBox position="relative" p={10}>
+          <p>Assignment</p>
+        </PseudoBox>
+
+        <PseudoBox position="relative" p={10}>
+          <p>Survey</p>
+        </PseudoBox>
       </Stack>
       <Box>
         <IconButton

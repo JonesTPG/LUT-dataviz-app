@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
 import GeneralCardSet from './cards/GeneralCardSet';
 
-const Assignment = () => {
-  let [value, setValue] = React.useState('');
+import { useStickyState } from '../hooks/common';
+
+const Assignment = ({ show, setPage }) => {
+  const [answer, setAnswer] = useState('');
+  const [stickyAnswer, setStickyAnswer] = useStickyState(
+    '',
+    'assignment-answer'
+  );
+  if (!show) {
+    return null;
+  }
 
   let handleInputChange = (e) => {
     let inputValue = e.target.value;
-    setValue(inputValue);
+    setAnswer(inputValue);
+    console.log(answer);
   };
 
   let handleSubmit = () => {
     console.log('submit');
-    /* check here if text is long enough etc... */
-    console.log(value);
+
+    console.log(answer);
+    if (answer.length < 2) {
+      // TODO: show info to user that answer is too short
+      return;
+    }
     /* update state and redirect user to survey page */
+    setPage('survey');
+    setStickyAnswer(answer);
   };
 
   return (
@@ -34,7 +50,7 @@ const Assignment = () => {
 
       <Flex justify="center" mt={10} ml={100} mr={100} direction="row">
         <Textarea
-          value={value}
+          value={answer}
           onChange={handleInputChange}
           placeholder="Type your answer..."
         />
