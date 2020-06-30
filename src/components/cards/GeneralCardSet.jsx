@@ -9,6 +9,7 @@ const GeneralCardSet = () => {
     query covidCards {
       covidCards {
         id
+        description
         region
         timespan
         date_of_first_case
