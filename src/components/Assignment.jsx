@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
-import GeneralCardSet from './cards/GeneralCardSet';
+import CovidCardSet from './cards/CovidCardSet';
 
 import { useStickyState } from '../hooks/common';
 
@@ -37,10 +37,12 @@ const Assignment = ({ show, setPage }) => {
   return (
     <>
       <Flex justify="center" p={10} direction="row">
-        <Text fontSize="4xl">Complete the following assignment</Text>
+        <Text fontSize="4xl">
+          Check out the cards and complete the following assignment
+        </Text>
       </Flex>
 
-      <GeneralCardSet></GeneralCardSet>
+      <CovidCardSet></CovidCardSet>
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">
