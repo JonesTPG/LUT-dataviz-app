@@ -2,15 +2,11 @@ import React, { useState } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
 import CovidCardSet from './cards/CovidCardSet';
+import HUSCardSet from './cards/HUSCardSet';
 
-import { useStickyState } from '../hooks/common';
-
-const Assignment = ({ show, setPage }) => {
+const Assignment = ({ show, setPage, setStickyAnswer }) => {
   const [answer, setAnswer] = useState('');
-  const [stickyAnswer, setStickyAnswer] = useStickyState(
-    '',
-    'assignment-answer'
-  );
+
   if (!show) {
     return null;
   }
@@ -42,6 +38,7 @@ const Assignment = ({ show, setPage }) => {
         </Text>
       </Flex>
 
+      <HUSCardSet></HUSCardSet>
       <CovidCardSet></CovidCardSet>
 
       <Flex justify="center" direction="row">

@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Box, Flex, Text, Button } from '@chakra-ui/core';
-
-import { getState } from '../utils/localStorage';
 
 const Welcome = ({ show, setPage }) => {
   if (!show) {
