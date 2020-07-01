@@ -8,8 +8,10 @@ const CovidCard = ({ data }) => {
 
   let {
     date_of_first_case,
+    name,
     description,
     chart,
+    timespan_image,
     over_65,
     population_density,
     region,
@@ -27,7 +29,7 @@ const CovidCard = ({ data }) => {
         bg="gray.200"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          {region}
+          {name}
         </Text>
         <Text mt={5}>{description}</Text>
         <Image w="100%" mt={3} rounded="md" src={API_URL + chart.url} />
@@ -49,6 +51,13 @@ const CovidCard = ({ data }) => {
           <StatLabel>% > 65 years old</StatLabel>
           <StatNumber>{over_65}</StatNumber>
         </Stat>
+
+        <Image
+          w="100%"
+          mt={3}
+          rounded="md"
+          src={API_URL + timespan_image.url}
+        />
       </Box>
     </>
   );

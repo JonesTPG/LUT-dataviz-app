@@ -10,6 +10,7 @@ const CovidCardSet = () => {
     query covidCards {
       covidCards {
         id
+        name
         description
         region
         timespan
@@ -39,7 +40,7 @@ const CovidCardSet = () => {
         <Flex wrap="wrap" p={[3, 5, 10, 10]} justifyContent="space-between">
           <CovidIntroduction></CovidIntroduction>
           {data.covidCards.map((covidCard) => (
-            <CovidCard key={covidCard.region} data={covidCard}></CovidCard>
+            <CovidCard key={covidCard.id} data={covidCard}></CovidCard>
           ))}
         </Flex>
       </Box>
