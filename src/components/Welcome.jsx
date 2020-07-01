@@ -2,10 +2,15 @@ import React from 'react';
 
 import { Box, Flex, Text, Button } from '@chakra-ui/core';
 
-const Welcome = ({ show, setPage }) => {
+const Welcome = ({ show, setPage, setProgress }) => {
   if (!show) {
     return null;
   }
+
+  let handleClick = () => {
+    setPage('assignment');
+    setProgress(33);
+  };
 
   return (
     <>
@@ -14,9 +19,7 @@ const Welcome = ({ show, setPage }) => {
       </Flex>
 
       <Box textAlign="center">
-        <Button onClick={() => setPage('assignment')}>
-          Proceed to assignment
-        </Button>
+        <Button onClick={handleClick}>Proceed to assignment</Button>
       </Box>
     </>
   );

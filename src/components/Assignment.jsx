@@ -4,7 +4,7 @@ import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 import CovidCardSet from './cards/CovidCardSet';
 import HUSCardSet from './cards/HUSCardSet';
 
-const Assignment = ({ show, setPage, setStickyAnswer }) => {
+const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
   const [answer, setAnswer] = useState('');
 
   if (!show) {
@@ -28,6 +28,7 @@ const Assignment = ({ show, setPage, setStickyAnswer }) => {
     /* update state and redirect user to survey page */
     setPage('survey');
     setStickyAnswer(answer);
+    setProgress(66);
   };
 
   return (
