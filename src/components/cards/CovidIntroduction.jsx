@@ -16,7 +16,7 @@ const CovidIntroduction = () => {
           Covid Card Collection Introduction
         </Text>
         <Text mt={5}>
-          This is cardset about Covid situation in different regions.
+          This is cardset about Covid situation in different regions of Finland.
         </Text>
       </Box>
     </>

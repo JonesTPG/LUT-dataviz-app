@@ -13,9 +13,12 @@ const HUSIntroduction = () => {
         bg="gray.200"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          HUS Card Collection Introduction
+          Helsinki Uusimaa region of Finland Card Collection Introduction
         </Text>
-        <Text mt={5}>This is cardset about Covid situation in HUS.</Text>
+        <Text mt={5}>
+          This is cardset about Covid situation in Helsinki Uusimaa region of
+          Finland.
+        </Text>
       </Box>
     </>
   );

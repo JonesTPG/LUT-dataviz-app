@@ -45,11 +45,6 @@ const HUSCard = ({ data }) => {
         <Flex justifyContent="space-evenly">
           <Box mt={8}>
             <Stat>
-              <StatLabel>Region</StatLabel>
-              <StatNumber>{region}</StatNumber>
-            </Stat>
-
-            <Stat>
               <StatLabel>Timespan</StatLabel>
               <StatNumber>{timespan}</StatNumber>
             </Stat>
@@ -59,7 +54,7 @@ const HUSCard = ({ data }) => {
             </Stat>
           </Box>
           <Box>
-            <Image mt={8} h={180} rounded="md" src={API_URL + map.url} />
+            <Image mt={8} h={120} rounded="md" src={API_URL + map.url} />
           </Box>
         </Flex>
 
