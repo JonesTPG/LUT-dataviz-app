@@ -44,7 +44,8 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">
-          In your opinion, how will the covid situation look like in the future?
+          In your opinion, how will the Covid-19 situation look like in the
+          future in Finland?
         </Text>
       </Flex>
 

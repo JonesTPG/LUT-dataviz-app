@@ -48,7 +48,7 @@ const CovidCard = ({ data }) => {
           <StatNumber>{population_density}</StatNumber>
         </Stat>
         <Stat>
-          <StatLabel>% > 65 years old</StatLabel>
+          <StatLabel>% &gt; 65 years old</StatLabel>
           <StatNumber>{over_65}</StatNumber>
         </Stat>
 
