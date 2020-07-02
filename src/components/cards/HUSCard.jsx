@@ -28,7 +28,7 @@ const HUSCard = ({ data }) => {
   return (
     <>
       <Box
-        w={['100%', '100%', '48%', '32%']}
+        w={['80%', '80%', '40%', '26%']}
         mb={5}
         borderWidth="1px"
         rounded="20px"

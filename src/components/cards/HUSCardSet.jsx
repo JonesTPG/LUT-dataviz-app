@@ -37,7 +37,16 @@ const HUSCardSet = () => {
   return (
     <>
       <Box textAlign="center">
-        <Flex wrap="wrap" p={[3, 5, 10, 10]} justifyContent="space-between">
+        <Flex
+          wrap="wrap"
+          p={[3, 5, 10, 10]}
+          justifyContent={[
+            'center',
+            'center',
+            'space-between',
+            'space-between'
+          ]}
+        >
           <HUSIntroduction></HUSIntroduction>
           {data.husCovidCards.map((husCard) => (
             <HUSCard key={husCard.id} data={husCard}></HUSCard>
