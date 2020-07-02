@@ -21,6 +21,9 @@ const HUSCardSet = () => {
         timespan_image {
           url
         }
+        map {
+          url
+        }
       }
     }
   `;

@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Image, Text, Stat, StatLabel, StatNumber } from '@chakra-ui/core';
+import {
+  Box,
+  Flex,
+  Image,
+  Text,
+  Stat,
+  StatLabel,
+  StatNumber
+} from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
@@ -13,7 +21,8 @@ const HUSCard = ({ data }) => {
     region,
     cases,
     image,
-    timespan_image
+    timespan_image,
+    map
   } = data;
 
   return (
@@ -33,19 +42,26 @@ const HUSCard = ({ data }) => {
 
         <Image w="100%" mt={3} rounded="md" src={API_URL + image.url} />
 
-        <Stat>
-          <StatLabel>Region</StatLabel>
-          <StatNumber>{region}</StatNumber>
-        </Stat>
+        <Flex justifyContent="space-evenly">
+          <Box mt={8}>
+            <Stat>
+              <StatLabel>Region</StatLabel>
+              <StatNumber>{region}</StatNumber>
+            </Stat>
 
-        <Stat>
-          <StatLabel>Timespan</StatLabel>
-          <StatNumber>{timespan}</StatNumber>
-        </Stat>
-        <Stat>
-          <StatLabel>Cases</StatLabel>
-          <StatNumber>{cases}</StatNumber>
-        </Stat>
+            <Stat>
+              <StatLabel>Timespan</StatLabel>
+              <StatNumber>{timespan}</StatNumber>
+            </Stat>
+            <Stat>
+              <StatLabel>Cases</StatLabel>
+              <StatNumber>{cases}</StatNumber>
+            </Stat>
+          </Box>
+          <Box>
+            <Image mt={8} h={180} rounded="md" src={API_URL + map.url} />
+          </Box>
+        </Flex>
 
         <Image
           w="100%"

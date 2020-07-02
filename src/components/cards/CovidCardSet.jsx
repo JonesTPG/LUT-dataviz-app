@@ -24,6 +24,9 @@ const CovidCardSet = () => {
         timespan_image {
           url
         }
+        map {
+          url
+        }
       }
     }
   `;
