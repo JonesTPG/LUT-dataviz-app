@@ -55,7 +55,9 @@ const CovidCard = ({ data }) => {
               <StatNumber>{date_of_first_case}</StatNumber>
             </Stat>
             <Stat>
-              <StatLabel>Population density</StatLabel>
+              <StatLabel>
+                Population per km<sup>2</sup>
+              </StatLabel>
               <StatNumber>{population_density}</StatNumber>
             </Stat>
             <Stat>
