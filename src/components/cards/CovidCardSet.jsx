@@ -36,15 +36,18 @@ const CovidCardSet = () => {
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
   console.log(data);
+  const covidCards = [...data.covidCards];
 
   return (
     <>
       <Box textAlign="center">
         <Flex wrap="wrap" p={[3, 5, 10, 10]} justifyContent="space-between">
           <CovidIntroduction></CovidIntroduction>
-          {data.covidCards.map((covidCard) => (
-            <CovidCard key={covidCard.id} data={covidCard}></CovidCard>
-          ))}
+          {covidCards
+            .sort((a, b) => a.cases - b.cases)
+            .map((covidCard) => (
+              <CovidCard key={covidCard.id} data={covidCard}></CovidCard>
+            ))}
         </Flex>
       </Box>
     </>

@@ -15,6 +15,7 @@ const HUSCardSet = () => {
         timespan
         region
         cases
+        order
         image {
           url
         }
@@ -33,6 +34,7 @@ const HUSCardSet = () => {
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
   console.log(data);
+  const husCovidCards = [...data.husCovidCards];
 
   return (
     <>
@@ -48,9 +50,11 @@ const HUSCardSet = () => {
           ]}
         >
           <HUSIntroduction></HUSIntroduction>
-          {data.husCovidCards.map((husCard) => (
-            <HUSCard key={husCard.id} data={husCard}></HUSCard>
-          ))}
+          {husCovidCards
+            .sort((a, b) => a.order - b.order)
+            .map((husCard) => (
+              <HUSCard key={husCard.id} data={husCard}></HUSCard>
+            ))}
         </Flex>
       </Box>
     </>
