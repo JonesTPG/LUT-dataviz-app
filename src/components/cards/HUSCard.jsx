@@ -14,16 +14,7 @@ import { useApiUrl } from '../../hooks/common';
 const HUSCard = ({ data }) => {
   const API_URL = useApiUrl();
 
-  let {
-    name,
-    description,
-    timespan,
-    region,
-    cases,
-    image,
-    timespan_image,
-    map
-  } = data;
+  let { name, description, timespan, cases, image, timespan_image, map } = data;
 
   return (
     <>

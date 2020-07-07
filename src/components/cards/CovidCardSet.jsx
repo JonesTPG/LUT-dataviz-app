@@ -35,7 +35,6 @@ const CovidCardSet = () => {
 
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
-  console.log(data);
   const covidCards = [...data.covidCards];
 
   return (

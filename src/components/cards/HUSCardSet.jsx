@@ -33,7 +33,6 @@ const HUSCardSet = () => {
 
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
-  console.log(data);
   const husCovidCards = [...data.husCovidCards];
 
   return (

@@ -22,7 +22,6 @@ const CovidCard = ({ data }) => {
     timespan_image,
     over_65,
     population_density,
-    region,
     cases,
     map
   } = data;
