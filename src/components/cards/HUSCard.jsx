@@ -49,7 +49,7 @@ const HUSCard = ({ data }) => {
               <StatNumber>{timespan}</StatNumber>
             </Stat>
             <Stat>
-              <StatLabel>Cases</StatLabel>
+              <StatLabel>New cases</StatLabel>
               <StatNumber>{cases}</StatNumber>
             </Stat>
           </Box>
