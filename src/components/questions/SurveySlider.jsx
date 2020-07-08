@@ -1,6 +1,8 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 
+import CardQuestion from './CardQuestion';
+
 const SurveySlider = () => {
   const GET_SURVEY_QUESTIONS = gql`
     query questions {
@@ -24,7 +26,12 @@ const SurveySlider = () => {
 
   return (
     <>
-      <p>slider</p>
+      {surveyQuestions.map((surveyQuestion) => (
+        <CardQuestion
+          key={surveyQuestion.id}
+          data={surveyQuestion}
+        ></CardQuestion>
+      ))}
     </>
   );
 };
