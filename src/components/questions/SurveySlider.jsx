@@ -24,14 +24,14 @@ const SurveySlider = () => {
   const surveyQuestions = [...data.questions];
   console.log(surveyQuestions);
 
+  //TODO: logic that switches the question. probably need to use react useState etc.
+  const currentQuestion = surveyQuestions.find(
+    (question) => question.order === 1
+  );
+
   return (
     <>
-      {surveyQuestions.map((surveyQuestion) => (
-        <CardQuestion
-          key={surveyQuestion.id}
-          data={surveyQuestion}
-        ></CardQuestion>
-      ))}
+      <CardQuestion data={currentQuestion}></CardQuestion>
     </>
   );
 };

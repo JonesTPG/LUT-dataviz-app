@@ -7,6 +7,7 @@ const CardQuestion = ({ data }) => {
 
   let { text, order, image } = data;
 
+  //TODO: add better UI with chakra components
   return (
     <>
       <p>{text}</p>
