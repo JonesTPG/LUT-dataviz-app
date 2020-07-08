@@ -1,0 +1,29 @@
+{
+  "demographics": {
+    "age": "20-30",
+    "country": "Finland"
+  },
+  "assignment_answer": "I think it will get better",
+  "survey": {
+    "question_1": "yes",
+    "question_2": "no",
+    "question_3": "no",
+    "question_4": "no",
+    "question_5": "no",
+    "question_6": "no",
+    "question_7": "no",
+    "question_8": "yes",
+    "question_9": "no",
+    "question_10": "no",
+    "question_11": "yes",
+    "question_12": "no",
+    "question_13": "no",
+    "question_14": "yes",
+    "question_15": "no",
+    "question_16": "no",
+    "question_17": "no",
+    "question_18": "no",
+    "question_19": "no",
+    "question_20": "yes"
+  }
+}
