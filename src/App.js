@@ -10,7 +10,7 @@ import { useStickyState } from './hooks/common';
 
 let App = () => {
   const [page, setPage] = useStickyState('welcome', 'page');
-  const [progress, setProgress] = useStickyState('0', 'progress');
+  const [progress, setProgress] = useStickyState(0, 'progress');
   const [stickyAnswer, setStickyAnswer] = useStickyState(
     '',
     'assignment-answer'
