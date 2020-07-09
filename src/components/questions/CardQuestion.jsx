@@ -1,11 +1,11 @@
-import React from 'react';
-import { Image, Text, Box, Radio, RadioGroup } from '@chakra-ui/core';
+import React, { useState } from 'react';
+import { Image, Text, Box, Button, Radio, RadioGroup } from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
-const CardQuestion = ({ data }) => {
-  const [value, setValue] = React.useState('1');
+const CardQuestion = ({ data, sendValue }) => {
   const API_URL = useApiUrl();
+  const [value, setValue] = useState(0);
 
   let { text, order, image } = data;
 
@@ -30,12 +30,15 @@ const CardQuestion = ({ data }) => {
         />
         <RadioGroup
           isInline
-          onChange={(e) => setValue(e.target.value)}
           value={value}
+          onChange={(e) => setValue(e.target.value)}
         >
           <Radio value="1">Yes</Radio>
           <Radio value="2">No</Radio>
         </RadioGroup>
+        <Box textAlign="center" mt={50} mb={50}>
+          <Button onClick={sendValue(value)}>Save answer and proceed</Button>
+        </Box>
       </Box>
     </>
   );
