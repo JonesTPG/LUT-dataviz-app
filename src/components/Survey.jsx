@@ -23,9 +23,10 @@ const Survey = ({ show, setPage, setProgress }) => {
 
       <SurveySlider></SurveySlider>
 
-      <Box textAlign="center" mb={50}>
+      {/* TODO: When user has done the survey, show a button that sends the data to backend and directs user to the thankyou page. */}
+      {/* <Box textAlign="center" mb={50}>
         <Button onClick={handleClick}>Save answer and proceed</Button>
-      </Box>
+      </Box> */}
     </>
   );
 };
