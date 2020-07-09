@@ -23,7 +23,7 @@ const Survey = ({ show, setPage, setProgress }) => {
 
       <SurveySlider></SurveySlider>
 
-      <Box textAlign="center">
+      <Box textAlign="center" mb={50}>
         <Button onClick={handleClick}>Save answer and proceed</Button>
       </Box>
     </>

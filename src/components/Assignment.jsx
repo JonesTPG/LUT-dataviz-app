@@ -56,7 +56,7 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
           placeholder="Type your answer..."
         />
       </Flex>
-      <Box textAlign="center">
+      <Box textAlign="center" mb={50}>
         <Button onClick={handleSubmit} mt={15}>
           Submit
         </Button>
