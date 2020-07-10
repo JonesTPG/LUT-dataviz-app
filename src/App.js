@@ -1,20 +1,41 @@
 import React from 'react';
-import CovidCards from './components/CovidCards';
-import Navbar from './components/NavBar';
-import Home from './components/Home';
-import CovidCard from './components/CovidCard';
 
-import { Route, Switch } from 'react-router';
+import Navbar from './components/NavBar';
+import Welcome from './components/Welcome';
+import Assignment from './components/Assignment';
+import Survey from './components/Survey';
+import ThankYou from './components/ThankYou';
+
+import { useStickyState } from './hooks/common';
 
 let App = () => {
+  const [page, setPage] = useStickyState('welcome', 'page');
+  const [progress, setProgress] = useStickyState(0, 'progress');
+  const [stickyAnswer, setStickyAnswer] = useStickyState(
+    '',
+    'assignment-answer'
+  );
+
   return (
     <>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" render={() => <Home></Home>} />
-        <Route exact path="/cards" render={() => <CovidCards></CovidCards>} />
-        <Route path="/cards/:id" render={() => <CovidCard></CovidCard>} />
-      </Switch>
+      <Navbar progress={progress} />
+      <Welcome
+        show={page === 'welcome'}
+        setPage={setPage}
+        setProgress={setProgress}
+      />
+      <Assignment
+        show={page === 'assignment'}
+        setPage={setPage}
+        setStickyAnswer={setStickyAnswer}
+        setProgress={setProgress}
+      />
+      <Survey
+        show={page === 'survey'}
+        setPage={setPage}
+        setProgress={setProgress}
+      />
+      <ThankYou show={page === 'thankyou'} />
     </>
   );
 };

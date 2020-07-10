@@ -18,11 +18,9 @@ Instructions for running the application with docker:
 
 Instructions for running the application manually:
 
-The local environment assumes that the backend is located at localhost:1337. You can override this by creating a
+The local environment assumes that the backend is located at localhost:1337. You can override this by editing the variable
 
-.env.development.local
-
-file in the root of repository and changing the variable REACT_APP_API_URL.
+REACT_APP_API_URL in .env.development file.
 
 1. git clone https://github.com/JonesTPG/LUT-dataviz-app
 
