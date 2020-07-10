@@ -5,6 +5,11 @@ import CovidCardSet from './cards/CovidCardSet';
 import HUSCardSet from './cards/HUSCardSet';
 
 const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
+  /* TODO:
+      - add logic that determines the application version for the user
+      - store the application version in local storage so that it doesn't change on browser refresh
+  */
+
   const [answer, setAnswer] = useState('');
 
   if (!show) {
@@ -39,8 +44,17 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
         </Text>
       </Flex>
 
+      {/* Different assignment version rendering here  */}
+
+      {/* TODO: 
+          - wrap HUSCardSet and CovidCardSet in a component (maybe versionA component?)
+          - make conditional rendering logic based on the application version that has been determined to the user
+      */}
+
       <HUSCardSet></HUSCardSet>
       <CovidCardSet></CovidCardSet>
+
+      {/* Different assignment version rendering here  */}
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">

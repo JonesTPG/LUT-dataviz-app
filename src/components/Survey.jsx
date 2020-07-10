@@ -3,6 +3,11 @@ import { Box, Text, Button } from '@chakra-ui/core';
 
 import SurveySlider from './questions/SurveySlider';
 
+/* TODO:
+  - make functionality that accepts the survey data from the SurveySlider.jsx
+  - make functionality that sends everything needed (application version, assignment answer, survey data) to Strapi via GraphQL mutation 
+*/
+
 const Survey = ({ show, setPage, setProgress }) => {
   if (!show) {
     return null;
