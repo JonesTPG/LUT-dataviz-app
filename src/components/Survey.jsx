@@ -17,7 +17,7 @@ const Survey = ({ show, setPage, setProgress }) => {
     'demographics'
   );
 
-  const [surveyData, setSurveyData] = useStickyState(null, 'survey-data');
+  const [surveyData, setSurveyData] = useStickyState({}, 'survey-data');
 
   if (!show) {
     return null;
@@ -34,10 +34,10 @@ const Survey = ({ show, setPage, setProgress }) => {
     setDemoGraphicInfo(data);
   };
 
-  let getSurveyData = (data) => () => {
-    console.log('survey data');
+  let getSurveyAnswer = (data) => {
     console.log(data);
-    setSurveyData(data);
+    setSurveyData({ ...surveyData, data });
+    console.log(surveyData);
   };
 
   return (
@@ -59,7 +59,7 @@ const Survey = ({ show, setPage, setProgress }) => {
         {demoGraphicInfo == null ? (
           <DemoGraphicInfo sendData={getDemoGraphics}></DemoGraphicInfo>
         ) : (
-          <SurveySlider sendData={getSurveyData}></SurveySlider>
+          <SurveySlider sendData={getSurveyAnswer}></SurveySlider>
         )}
       </Box>
 

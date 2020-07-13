@@ -5,12 +5,6 @@ import { gql, useQuery } from '@apollo/client';
 import CardQuestion from './CardQuestion';
 import { useStickyState } from '../../hooks/common';
 
-/* TODO:
-  - finish up the demographics question component and make it appear FIRST on the survey slider
-  - make some more questions to CMS and finish the logic that changes the questions
-  - make a logic that sends the surveydata to Survey.jsx when the user has answered all the questions
-*/
-
 const SurveySlider = ({ sendData }) => {
   const GET_SURVEY_QUESTIONS = gql`
     query questions {
@@ -33,9 +27,9 @@ const SurveySlider = ({ sendData }) => {
   const getAnswer = (value) => () => {
     let answerData = {};
     answerData['question' + questionNumber] = value;
-    console.log(answerData);
 
     sendData(answerData);
+
     questionNumber === surveyQuestions.length
       ? console.log('all done')
       : setQuestionNumber(questionNumber + 1);
