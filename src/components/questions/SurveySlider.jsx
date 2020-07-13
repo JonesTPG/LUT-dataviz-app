@@ -11,7 +11,7 @@ import { useStickyState } from '../../hooks/common';
   - make a logic that sends the surveydata to Survey.jsx when the user has answered all the questions
 */
 
-const SurveySlider = () => {
+const SurveySlider = ({ sendData }) => {
   const GET_SURVEY_QUESTIONS = gql`
     query questions {
       questions {
@@ -25,14 +25,20 @@ const SurveySlider = () => {
     }
   `;
 
-  let surveyData = {};
-
-  const [question, setQuestion] = useStickyState(1, 'question');
+  const [questionNumber, setQuestionNumber] = useStickyState(
+    1,
+    'question-number'
+  );
 
   const getAnswer = (value) => () => {
-    console.log(value);
-    surveyData.question1 = value;
-    setQuestion(2);
+    let answerData = {};
+    answerData['question' + questionNumber] = value;
+    console.log(answerData);
+
+    sendData(answerData);
+    questionNumber === surveyQuestions.length
+      ? console.log('all done')
+      : setQuestionNumber(questionNumber + 1);
   };
 
   const { loading, error, data } = useQuery(GET_SURVEY_QUESTIONS);
@@ -46,7 +52,9 @@ const SurveySlider = () => {
     return;
   }
 
-  const currentQuestion = surveyQuestions.find((q) => q.order === question);
+  const currentQuestion = surveyQuestions.find(
+    (q) => q.order === questionNumber
+  );
 
   return (
     <>
