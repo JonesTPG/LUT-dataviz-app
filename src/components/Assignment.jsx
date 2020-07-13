@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
-import CovidCardSet from './cards/CovidCardSet';
-import HUSCardSet from './cards/HUSCardSet';
+import VersionA from './versions/VersionA';
+import VersionB from './versions/VersionB';
+import VersionC from './versions/VersionC';
 
-const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
-  /* TODO:
-      - add logic that determines the application version for the user
-      - store the application version in local storage so that it doesn't change on browser refresh
-  */
-
+const Assignment = ({
+  applicationVersion,
+  show,
+  setPage,
+  setStickyAnswer,
+  setProgress
+}) => {
   const [answer, setAnswer] = useState('');
 
   if (!show) {
@@ -30,7 +32,7 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
       // TODO: show info to user that answer is too short
       return;
     }
-    /* update state and redirect user to survey page */
+
     setPage('survey');
     setStickyAnswer(answer);
     setProgress(66);
@@ -44,17 +46,13 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
         </Text>
       </Flex>
 
-      {/* Different assignment version rendering here  */}
-
-      {/* TODO: 
-          - wrap HUSCardSet and CovidCardSet in a component (maybe versionA component?)
-          - make conditional rendering logic based on the application version that has been determined to the user
-      */}
-
-      <HUSCardSet></HUSCardSet>
-      <CovidCardSet></CovidCardSet>
-
-      {/* Different assignment version rendering here  */}
+      {applicationVersion === 1 ? (
+        <VersionA></VersionA>
+      ) : applicationVersion === 2 ? (
+        <VersionB></VersionB>
+      ) : (
+        <VersionC></VersionC>
+      )}
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">
