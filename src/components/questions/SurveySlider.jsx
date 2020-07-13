@@ -25,14 +25,14 @@ const SurveySlider = ({ sendData }) => {
   );
 
   const getAnswer = (value) => () => {
-    let answerData = {};
-    answerData['question' + questionNumber] = value;
-
-    sendData(answerData);
-
-    questionNumber === surveyQuestions.length
-      ? console.log('all done')
-      : setQuestionNumber(questionNumber + 1);
+    if (questionNumber === surveyQuestions.length) {
+      console.log('all done');
+      sendData(questionNumber, value);
+      //TODO: survey is done, send data to strapi and redirect user to thankyou page
+    } else {
+      sendData(questionNumber, value);
+      setQuestionNumber(questionNumber + 1);
+    }
   };
 
   const { loading, error, data } = useQuery(GET_SURVEY_QUESTIONS);

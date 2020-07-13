@@ -6,18 +6,13 @@ import { useStickyState } from '../hooks/common';
 import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
-/* TODO:
-  - make functionality that accepts the survey data from the SurveySlider.jsx
-  - make functionality that sends everything needed (application version, assignment answer, demographic info, survey data) to Strapi via GraphQL mutation 
-*/
-
 const Survey = ({ show, setPage, setProgress }) => {
   const [demoGraphicInfo, setDemoGraphicInfo] = useStickyState(
     null,
     'demographics'
   );
 
-  const [surveyData, setSurveyData] = useStickyState({}, 'survey-data');
+  const [surveyData, setSurveyData] = useStickyState([], 'survey-data');
 
   if (!show) {
     return null;
@@ -34,9 +29,8 @@ const Survey = ({ show, setPage, setProgress }) => {
     setDemoGraphicInfo(data);
   };
 
-  let getSurveyAnswer = (data) => {
-    console.log(data);
-    setSurveyData({ ...surveyData, data });
+  let getSurveyAnswer = (questionNumber, value) => {
+    setSurveyData([...surveyData, { questionNumber, value }]);
     console.log(surveyData);
   };
 
