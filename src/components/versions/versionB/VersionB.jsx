@@ -15,17 +15,9 @@ const VersionB = () => {
   return (
     <>
       <p>application version B</p>
-      <Text textAlign="center" fontSize="xl">
-        Story element text 1
-      </Text>
+
       <HUSCardSet></HUSCardSet>
-      <Text textAlign="center" fontSize="xl">
-        Story element text 2
-      </Text>
       <CovidCardSet></CovidCardSet>
-      <Text textAlign="center" fontSize="xl">
-        Story element text 3
-      </Text>
     </>
   );
 };
