@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
-import VersionA from './versions/VersionA';
-import VersionB from './versions/VersionB';
-import VersionC from './versions/VersionC';
+import VersionA from './versions/versionA/VersionA';
+import VersionB from './versions/versionB/VersionB';
+import VersionC from './versions/versionC/VersionC';
 
 const Assignment = ({
   applicationVersion,

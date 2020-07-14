@@ -1,7 +1,7 @@
 import React from 'react';
 
-import CovidCardSet from '../cards/CovidCardSet';
-import HUSCardSet from '../cards/HUSCardSet';
+import CovidCardSet from './cards/CovidCardSet';
+import HUSCardSet from './cards/HUSCardSet';
 
 /*
 

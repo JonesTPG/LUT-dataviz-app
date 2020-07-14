@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Text } from '@chakra-ui/core';
 
-import CovidCardSet from '../cards/CovidCardSet';
-import HUSCardSet from '../cards/HUSCardSet';
+import CovidCardSet from './cards/CovidCardSet';
+import HUSCardSet from './cards/HUSCardSet';
 
 /*
 
