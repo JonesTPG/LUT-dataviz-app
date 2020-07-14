@@ -7,13 +7,19 @@ import {
   Radio,
   RadioGroup,
   Divider,
-  Flex
+  Flex,
+  Select,
+  Input
 } from '@chakra-ui/core';
 
 const DemoGraphicInfo = ({ sendData }) => {
-  const [gender, setGender] = useState(null);
-  const [age, setAge] = useState(null);
-  const [nationality, setNationality] = useState(null);
+  const [age, setAge] = useState('');
+  const [gender, setGender] = useState('');
+  const [education, setEducation] = useState('');
+  const [englishFirst, setEnglishFirst] = useState('');
+  const [englishFluency, setEnglishFluency] = useState('');
+  const [country, setCountry] = useState('');
+  const [livedInFinland, setLivedInFinland] = useState('');
 
   return (
     <>
@@ -24,43 +30,57 @@ const DemoGraphicInfo = ({ sendData }) => {
       <Divider></Divider>
 
       <Flex justifyContent="space-evenly">
-        <Text>Gender</Text>
-        <RadioGroup
-          isInline
-          onChange={(e) => setGender(e.target.value)}
-          value={gender}
-        >
-          <Radio value="male">Male</Radio>
-          <Radio value="female">Female</Radio>
-          <Radio value="other">Other</Radio>
-        </RadioGroup>
-      </Flex>
-      <Divider></Divider>
-
-      <Flex justifyContent="space-evenly">
         <Text>Age</Text>
-        <RadioGroup
-          isInline
-          onChange={(e) => setAge(e.target.value)}
-          value={age}
-        >
-          <Radio value="10-20">10-20</Radio>
-          <Radio value="20-40">20-40</Radio>
-          <Radio value="40-60">40-60</Radio>
-        </RadioGroup>
+        <Box>
+          <Select
+            onChange={(e) => console.log(e.target.value)}
+            placeholder="Select option"
+          >
+            <option value="18-20">18-20</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </Select>
+        </Box>
       </Flex>
       <Divider></Divider>
 
       <Flex justifyContent="space-evenly">
-        <Text>Nationality</Text>
+        <Text>Gender</Text>
+        <Box>
+          <Input
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+            placeholder="Type your asnwer here"
+            size="sm"
+          />
+        </Box>
+      </Flex>
+      <Divider></Divider>
+
+      <Flex justifyContent="space-evenly">
+        <Text>Education</Text>
+        <Box>
+          <Select
+            onChange={(e) => console.log(e.target.value)}
+            placeholder="Select option"
+          >
+            <option value="High school">High school</option>
+            <option value="Some high school">Some high school</option>
+            <option value="Bachelor’s degree">Bachelor’s degree</option>
+          </Select>
+        </Box>
+      </Flex>
+      <Divider></Divider>
+
+      <Flex justifyContent="space-evenly">
+        <Text>Is English your first language?</Text>
         <RadioGroup
           isInline
-          onChange={(e) => setNationality(e.target.value)}
-          value={nationality}
+          onChange={(e) => setEnglishFirst(e.target.value)}
+          value={englishFirst}
         >
-          <Radio value="european">European</Radio>
-          <Radio value="american">American</Radio>
-          <Radio value="asian">Asian</Radio>
+          <Radio value="yes">yes</Radio>
+          <Radio value="no">no</Radio>
         </RadioGroup>
       </Flex>
       <Divider></Divider>
@@ -69,7 +89,7 @@ const DemoGraphicInfo = ({ sendData }) => {
         <Button
           onClick={sendData({
             gender: gender,
-            nationality: nationality,
+            nationality: country,
             age: age
           })}
         >
