@@ -17,7 +17,10 @@ const DemoGraphicInfo = ({ sendData }) => {
 
   return (
     <>
-      <Text fontSize="2xl">First, fill out some demographic info:</Text>
+      <Text fontSize="2xl">
+        Card questions are now done! Lastly, fill out some demographic
+        information:
+      </Text>
       <Divider></Divider>
 
       <Flex justifyContent="space-evenly">

@@ -6,7 +6,7 @@ import { gql, useQuery } from '@apollo/client';
 import CardQuestion from './CardQuestion';
 import { useStickyState } from '../../hooks/common';
 
-const SurveySlider = ({ sendData, sendSurveyDone }) => {
+const SurveySlider = ({ sendData, sendCardQuestionsDone }) => {
   const GET_SURVEY_QUESTIONS = gql`
     query questions {
       questions {
@@ -21,8 +21,6 @@ const SurveySlider = ({ sendData, sendSurveyDone }) => {
     }
   `;
 
-  const [surveyDone, setSurveyDone] = useState(false);
-
   const [questionNumber, setQuestionNumber] = useStickyState(
     1,
     'question-number'
@@ -32,7 +30,7 @@ const SurveySlider = ({ sendData, sendSurveyDone }) => {
     if (questionNumber === surveyQuestions.length) {
       console.log('all done');
       sendData(identifier, value);
-      setSurveyDone(true);
+      sendCardQuestionsDone(true);
     } else {
       sendData(identifier, value);
       setQuestionNumber(questionNumber + 1);
@@ -56,22 +54,7 @@ const SurveySlider = ({ sendData, sendSurveyDone }) => {
 
   return (
     <>
-      {surveyDone ? (
-        <Box textAlign="center" mb={50}>
-          <Text fontSize="xl">
-            Congrats! You completed the survey. Send your answers and receive
-            your AMT reward by clickin the button below.
-          </Text>
-          <Button mt={10} onClick={sendSurveyDone}>
-            Send survey and proceed
-          </Button>
-        </Box>
-      ) : (
-        <CardQuestion
-          data={currentQuestion}
-          sendValue={getAnswer}
-        ></CardQuestion>
-      )}
+      <CardQuestion data={currentQuestion} sendValue={getAnswer}></CardQuestion>
     </>
   );
 };

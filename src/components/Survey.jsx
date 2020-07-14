@@ -7,11 +7,15 @@ import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
 const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
+  const [cardQuestionsDone, setCardQuestionsDone] = useStickyState(
+    false,
+    'card-questions-done'
+  );
+
   const [demoGraphicInfo, setDemoGraphicInfo] = useStickyState(
     null,
     'demographics'
   );
-
   const [surveyData, setSurveyData] = useStickyState([], 'survey-data');
 
   if (!show) {
@@ -20,14 +24,18 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
 
   let getDemoGraphics = (data) => () => {
     setDemoGraphicInfo(data);
+    sendDataToStrapi();
   };
 
   let getSurveyAnswer = (questionNumber, value) => {
     setSurveyData([...surveyData, { questionNumber, value }]);
   };
 
-  let getSurveyDone = () => {
-    // TODO: send data to Strapi API
+  let sendDataToStrapi = () => {
+    console.log('sending data...');
+    //TODO: gather all the data into a GraphQL mutation and send the mutation.
+
+    console.log('data sent');
     setPage('thankyou');
     setProgress(100);
   };
@@ -48,12 +56,12 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
         borderColor="blue.500"
         borderWidth={10}
       >
-        {demoGraphicInfo == null ? (
+        {cardQuestionsDone ? (
           <DemoGraphicInfo sendData={getDemoGraphics}></DemoGraphicInfo>
         ) : (
           <SurveySlider
             sendData={getSurveyAnswer}
-            sendSurveyDone={getSurveyDone}
+            sendCardQuestionsDone={setCardQuestionsDone}
           ></SurveySlider>
         )}
       </Box>
