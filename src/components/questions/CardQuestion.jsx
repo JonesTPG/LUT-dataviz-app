@@ -15,10 +15,10 @@ const CardQuestion = ({ data, sendValue }) => {
   const API_URL = useApiUrl();
   const [value, setValue] = useState('');
 
-  let { text, order, type, image } = data;
+  let { text, identifier, type, image } = data;
 
   const handleSubmit = () => {
-    sendValue(value);
+    sendValue(identifier, value);
     setValue('');
   };
 
