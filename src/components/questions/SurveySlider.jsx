@@ -51,7 +51,7 @@ const SurveySlider = ({ sendData, sendSurveyDone }) => {
   }
 
   const currentQuestion = surveyQuestions.find(
-    (q) => q.order === questionNumber
+    (q) => q.identifier === questionNumber
   );
 
   return (
