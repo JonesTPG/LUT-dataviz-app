@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
-import { Image, Text, Box, Button, Radio, RadioGroup } from '@chakra-ui/core';
+import {
+  Image,
+  Text,
+  Box,
+  Button,
+  Radio,
+  RadioGroup,
+  Input
+} from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
 const CardQuestion = ({ data, sendValue }) => {
   const API_URL = useApiUrl();
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('');
 
-  let { text, order, image } = data;
+  let { text, order, type, image } = data;
+
+  const handleSubmit = () => {
+    sendValue(value);
+    setValue('');
+  };
 
   return (
     <>
@@ -21,16 +34,25 @@ const CardQuestion = ({ data, sendValue }) => {
         margin="auto"
         mb={10}
       />
-      <RadioGroup
-        isInline
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-      >
-        <Radio value="1">Yes</Radio>
-        <Radio value="2">No</Radio>
-      </RadioGroup>
+      {type === 'recall' ? (
+        <RadioGroup
+          isInline
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        >
+          <Radio value="1">Yes</Radio>
+          <Radio value="2">No</Radio>
+        </RadioGroup>
+      ) : (
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Type your asnwer here"
+          size="sm"
+        />
+      )}
       <Box textAlign="center" mt={50} mb={50}>
-        <Button onClick={sendValue(value)}>Save answer and proceed</Button>
+        <Button onClick={handleSubmit}>Save answer and proceed</Button>
       </Box>
     </>
   );

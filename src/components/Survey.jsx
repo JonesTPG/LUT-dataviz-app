@@ -25,13 +25,11 @@ const Survey = ({ show, setPage, setProgress }) => {
   };
 
   let getDemoGraphics = (data) => () => {
-    console.log(data);
     setDemoGraphicInfo(data);
   };
 
   let getSurveyAnswer = (questionNumber, value) => {
     setSurveyData([...surveyData, { questionNumber, value }]);
-    console.log(surveyData);
   };
 
   return (

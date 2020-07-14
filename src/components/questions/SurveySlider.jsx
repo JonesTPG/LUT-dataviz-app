@@ -12,6 +12,7 @@ const SurveySlider = ({ sendData }) => {
         id
         text
         order
+        type
         image {
           url
         }
@@ -24,7 +25,7 @@ const SurveySlider = ({ sendData }) => {
     'question-number'
   );
 
-  const getAnswer = (value) => () => {
+  const getAnswer = (value) => {
     if (questionNumber === surveyQuestions.length) {
       console.log('all done');
       sendData(questionNumber, value);
