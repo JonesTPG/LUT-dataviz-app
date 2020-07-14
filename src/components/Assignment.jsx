@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
 
 import VersionA from './versions/versionA/VersionA';

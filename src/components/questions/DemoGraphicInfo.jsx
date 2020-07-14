@@ -73,7 +73,7 @@ const DemoGraphicInfo = ({ sendData }) => {
             age: age
           })}
         >
-          Submit and proceed to the survey
+          Submit answers and proceed to earn your reward
         </Button>
       </Box>
     </>

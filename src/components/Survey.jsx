@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Box, Text, Button } from '@chakra-ui/core';
+import { Box, Text } from '@chakra-ui/core';
 import { gql, useMutation } from '@apollo/client';
 
 import { useStickyState } from '../hooks/common';
