@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Text, Button } from '@chakra-ui/core';
 
 import { useStickyState } from '../hooks/common';
@@ -6,7 +6,7 @@ import { useStickyState } from '../hooks/common';
 import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
-const Survey = ({ show, setPage, setProgress }) => {
+const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   const [demoGraphicInfo, setDemoGraphicInfo] = useStickyState(
     null,
     'demographics'
@@ -18,18 +18,18 @@ const Survey = ({ show, setPage, setProgress }) => {
     return null;
   }
 
-  let handleSendClick = () => {
-    // TODO: send data to Strapi API
-    setPage('thankyou');
-    setProgress(100);
-  };
-
   let getDemoGraphics = (data) => () => {
     setDemoGraphicInfo(data);
   };
 
   let getSurveyAnswer = (questionNumber, value) => {
     setSurveyData([...surveyData, { questionNumber, value }]);
+  };
+
+  let getSurveyDone = () => {
+    // TODO: send data to Strapi API
+    setPage('thankyou');
+    setProgress(100);
   };
 
   return (
@@ -51,14 +51,12 @@ const Survey = ({ show, setPage, setProgress }) => {
         {demoGraphicInfo == null ? (
           <DemoGraphicInfo sendData={getDemoGraphics}></DemoGraphicInfo>
         ) : (
-          <SurveySlider sendData={getSurveyAnswer}></SurveySlider>
+          <SurveySlider
+            sendData={getSurveyAnswer}
+            sendSurveyDone={getSurveyDone}
+          ></SurveySlider>
         )}
       </Box>
-
-      {/* TODO: When user has done the survey, show a button that sends the data to backend and directs user to the thankyou page. */}
-      {/* <Box textAlign="center" mb={50}>
-        <Button onClick={handleClick}>Send survey and proceed</Button>
-      </Box> */}
     </>
   );
 };

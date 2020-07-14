@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import { Box, Button, Text } from '@chakra-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 import CardQuestion from './CardQuestion';
 import { useStickyState } from '../../hooks/common';
 
-const SurveySlider = ({ sendData }) => {
+const SurveySlider = ({ sendData, sendSurveyDone }) => {
   const GET_SURVEY_QUESTIONS = gql`
     query questions {
       questions {
@@ -20,6 +21,8 @@ const SurveySlider = ({ sendData }) => {
     }
   `;
 
+  const [surveyDone, setSurveyDone] = useState(false);
+
   const [questionNumber, setQuestionNumber] = useStickyState(
     1,
     'question-number'
@@ -29,7 +32,7 @@ const SurveySlider = ({ sendData }) => {
     if (questionNumber === surveyQuestions.length) {
       console.log('all done');
       sendData(questionNumber, value);
-      //TODO: survey is done, send data to strapi and redirect user to thankyou page
+      setSurveyDone(true);
     } else {
       sendData(questionNumber, value);
       setQuestionNumber(questionNumber + 1);
@@ -53,7 +56,22 @@ const SurveySlider = ({ sendData }) => {
 
   return (
     <>
-      <CardQuestion data={currentQuestion} sendValue={getAnswer}></CardQuestion>
+      {surveyDone ? (
+        <Box textAlign="center" mb={50}>
+          <Text fontSize="xl">
+            Congrats! You completed the survey. Send your answers and receive
+            your AMT reward by clickin the button below.
+          </Text>
+          <Button mt={10} onClick={sendSurveyDone}>
+            Send survey and proceed
+          </Button>
+        </Box>
+      ) : (
+        <CardQuestion
+          data={currentQuestion}
+          sendValue={getAnswer}
+        ></CardQuestion>
+      )}
     </>
   );
 };
