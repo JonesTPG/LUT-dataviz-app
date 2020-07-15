@@ -52,8 +52,8 @@ const CardQuestion = ({ data, sendValue }) => {
           value={value}
           onChange={(e) => setValue(e.target.value)}
         >
-          <Radio value="1">Yes</Radio>
-          <Radio value="2">No</Radio>
+          <Radio value="yes">Yes</Radio>
+          <Radio value="no">No</Radio>
         </RadioGroup>
       ) : (
         <Input

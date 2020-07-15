@@ -54,13 +54,12 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     sendDataToStrapi();
   };
 
-  let getSurveyAnswer = (questionNumber, value) => {
-    setSurveyData([...surveyData, { questionNumber, value }]);
+  let getSurveyAnswer = (identifier, value) => {
+    setSurveyData([...surveyData, { identifier, value }]);
   };
 
   let sendDataToStrapi = () => {
     console.log('sending data...');
-    //TODO: validate data in some level
 
     //TODO: gather all the data into a GraphQL mutation and send the mutation.
 
