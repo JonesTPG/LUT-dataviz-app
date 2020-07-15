@@ -49,7 +49,7 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     return null;
   }
 
-  let getDemoGraphics = (data) => () => {
+  let getDemoGraphics = (data) => {
     setDemoGraphicInfo(data);
     sendDataToStrapi();
   };

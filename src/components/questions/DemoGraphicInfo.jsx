@@ -9,8 +9,11 @@ import {
   Divider,
   Flex,
   Select,
-  Input
+  Input,
+  useToast
 } from '@chakra-ui/core';
+
+import { validateDemoGraphics } from '../../utils/validate';
 
 const DemoGraphicInfo = ({ sendData }) => {
   const [age, setAge] = useState('');
@@ -21,6 +24,43 @@ const DemoGraphicInfo = ({ sendData }) => {
   const [englishFluency, setEnglishFluency] = useState('');
   const [country, setCountry] = useState('');
   const [livedInFinland, setLivedInFinland] = useState('');
+
+  const toast = useToast();
+
+  const handleSubmit = () => {
+    //TODO: validate data, display toast on failure
+    if (
+      validateDemoGraphics(
+        age,
+        gender,
+        education,
+        otherEducation,
+        englishFirst,
+        englishFluency,
+        country,
+        livedInFinland
+      )
+    ) {
+      sendData({
+        age: age,
+        gender: gender,
+        education: education,
+        otherEducation: otherEducation,
+        englishFirst: englishFirst,
+        englishFluency: englishFluency,
+        country: country,
+        livedInFinland: livedInFinland
+      });
+    } else {
+      toast({
+        title: 'An error occurred.',
+        description: 'Please fill out all of the fields.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+    }
+  };
 
   return (
     <>
@@ -163,18 +203,7 @@ const DemoGraphicInfo = ({ sendData }) => {
       <Divider></Divider>
 
       <Box textAlign="center" mt={50} mb={50}>
-        <Button
-          onClick={sendData({
-            age: age,
-            gender: gender,
-            education: education,
-            otherEducation: otherEducation,
-            englishFirst: englishFirst,
-            englishFluency: englishFluency,
-            country: country,
-            livedInFinland: livedInFinland
-          })}
-        >
+        <Button onClick={handleSubmit}>
           Submit answers and proceed to earn your reward
         </Button>
       </Box>

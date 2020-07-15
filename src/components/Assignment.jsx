@@ -29,7 +29,7 @@ const Assignment = ({
 
     console.log(answer);
     if (answer.length < 2) {
-      // TODO: show info to user that answer is too short
+      // TODO: show info to user that answer is too short. use chakra ui usetoast
       return;
     }
 
