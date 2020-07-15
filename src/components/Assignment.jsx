@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
+import { Box, Flex, Text, Textarea, Button, useToast } from '@chakra-ui/core';
 
 import VersionA from './versions/versionA/VersionA';
 import VersionB from './versions/versionB/VersionB';
@@ -13,6 +13,7 @@ const Assignment = ({
   setProgress
 }) => {
   const [answer, setAnswer] = useState('');
+  const toast = useToast();
 
   if (!show) {
     return null;
@@ -21,15 +22,17 @@ const Assignment = ({
   let handleInputChange = (e) => {
     let inputValue = e.target.value;
     setAnswer(inputValue);
-    console.log(answer);
   };
 
   let handleSubmit = () => {
-    console.log('submit');
-
-    console.log(answer);
-    if (answer.length < 2) {
-      // TODO: show info to user that answer is too short. use chakra ui usetoast
+    if (answer.length < 50) {
+      toast({
+        title: 'An error occurred.',
+        description: 'Please answer the question with at least 50 characters.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
       return;
     }
 
