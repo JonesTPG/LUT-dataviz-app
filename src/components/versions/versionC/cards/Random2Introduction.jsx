@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/core';
 
-const HUSIntroduction = () => {
+const Random2Introduction = () => {
   return (
     <>
       <Box
@@ -13,15 +13,12 @@ const HUSIntroduction = () => {
         bg="gray.200"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          Helsinki Uusimaa region of Finland Card Collection Introduction
+          Covid Cardset
         </Text>
-        <Text mt={5}>
-          This is cardset about Covid situation in Helsinki Uusimaa region of
-          Finland.
-        </Text>
+        <Text mt={5}>This is Covid Cardset B.</Text>
       </Box>
     </>
   );
 };
 
-export default HUSIntroduction;
+export default Random2Introduction;

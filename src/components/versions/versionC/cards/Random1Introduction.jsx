@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text } from '@chakra-ui/core';
 
-const CovidIntroduction = () => {
+const Random1Introduction = () => {
   return (
     <>
       <Box
@@ -13,14 +13,12 @@ const CovidIntroduction = () => {
         bg="gray.200"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          Covid Card Collection Introduction
+          Covid Cardset
         </Text>
-        <Text mt={5}>
-          This is cardset about Covid situation in different regions of Finland.
-        </Text>
+        <Text mt={5}>This is Covid Cardset A.</Text>
       </Box>
     </>
   );
 };
 
-export default CovidIntroduction;
+export default Random1Introduction;
