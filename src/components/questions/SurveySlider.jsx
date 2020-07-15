@@ -5,6 +5,7 @@ import { gql, useQuery } from '@apollo/client';
 
 import CardQuestion from './CardQuestion';
 import { useStickyState } from '../../hooks/common';
+import { generateRandomQuestionOrder } from '../../utils/randomize';
 
 const SurveySlider = ({ sendData, sendCardQuestionsDone }) => {
   const GET_SURVEY_QUESTIONS = gql`
@@ -21,26 +22,30 @@ const SurveySlider = ({ sendData, sendCardQuestionsDone }) => {
     }
   `;
 
-  const [questionNumber, setQuestionNumber] = useStickyState(
-    1,
-    'question-number'
+  const [questionOrder, setQuestionOrder] = useStickyState(
+    generateRandomQuestionOrder(),
+    'question-order'
   );
+  const [questionIndex, setQuestionIndex] = useStickyState(0, 'question-index');
 
   const getAnswer = (identifier, value) => {
-    if (questionNumber === surveyQuestions.length) {
+    console.log('survey question length' + surveyQuestions.length);
+    console.log('question index' + questionIndex);
+    sendData(identifier, value);
+    if (questionIndex === surveyQuestions.length - 1) {
       console.log('all done');
-      sendData(identifier, value);
       sendCardQuestionsDone(true);
-    } else {
-      sendData(identifier, value);
-      setQuestionNumber(questionNumber + 1);
     }
+    setQuestionIndex(questionIndex + 1);
   };
 
   const { loading, error, data } = useQuery(GET_SURVEY_QUESTIONS);
 
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
+
+  //TODO: randomize question array. save the randomization sequence
+  //so that refresh wont reset the order
   const surveyQuestions = [...data.questions];
 
   if (surveyQuestions.length === 0) {
@@ -48,9 +53,8 @@ const SurveySlider = ({ sendData, sendCardQuestionsDone }) => {
     return;
   }
 
-  const currentQuestion = surveyQuestions.find(
-    (q) => q.identifier === questionNumber
-  );
+  const currentQuestion = surveyQuestions[questionOrder[questionIndex]];
+  console.log(currentQuestion);
 
   return (
     <>

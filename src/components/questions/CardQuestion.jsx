@@ -6,20 +6,32 @@ import {
   Button,
   Radio,
   RadioGroup,
-  Input
+  Input,
+  useToast
 } from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
 const CardQuestion = ({ data, sendValue }) => {
   const API_URL = useApiUrl();
+  const toast = useToast();
   const [value, setValue] = useState('');
 
   let { text, identifier, type, image } = data;
 
   const handleSubmit = () => {
-    sendValue(identifier, value);
-    setValue('');
+    if (value == null || value == '') {
+      toast({
+        title: 'An error occurred.',
+        description: 'Please answer the question before proceeding.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+    } else {
+      sendValue(identifier, value);
+      setValue('');
+    }
   };
 
   return (
