@@ -1,11 +1,11 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
 import { Box, Flex } from '@chakra-ui/core';
 
 import Random1Introduction from './Random1Introduction';
+import CovidCard from './CovidCard';
 import HUSCard from './HUSCard';
 
-const RandomCardSet1 = ({ cardset }) => {
+const RandomCardSet1 = ({ cardSet }) => {
   return (
     <>
       <Box textAlign="center">
@@ -20,11 +20,13 @@ const RandomCardSet1 = ({ cardset }) => {
           ]}
         >
           <Random1Introduction></Random1Introduction>
-          {/* {husCovidCards
-            .sort((a, b) => a.order - b.order)
-            .map((husCard) => (
-              <HUSCard key={husCard.id} data={husCard}></HUSCard>
-            ))} */}
+          {cardSet.map((card) =>
+            card.__typename == 'HusCovidCard' ? (
+              <HUSCard key={card.id} data={card}></HUSCard>
+            ) : (
+              <CovidCard key={card.id} data={card}></CovidCard>
+            )
+          )}
         </Flex>
       </Box>
     </>

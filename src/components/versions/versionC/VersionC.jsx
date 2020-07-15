@@ -85,8 +85,8 @@ const VersionC = () => {
   return (
     <>
       <p>application version C</p>
-      <RandomCardSet1 cardset={cardSet1}></RandomCardSet1>
-      <RandomCardSet2 cardset={cardSet2}></RandomCardSet2>
+      <RandomCardSet1 cardSet={cardSet1}></RandomCardSet1>
+      <RandomCardSet2 cardSet={cardSet2}></RandomCardSet2>
     </>
   );
 };
