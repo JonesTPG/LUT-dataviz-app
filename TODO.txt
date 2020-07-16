@@ -1,1 +1,1 @@
-- test that dockerfile and Readme instructions are correct -> DONE
+- handle data sending to Strapi CMS
