@@ -7,13 +7,15 @@ import Survey from './components/Survey';
 import ThankYou from './components/ThankYou';
 
 import { useStickyState } from './hooks/common';
+import { getRandomInt } from './utils/randomize';
 
 let App = () => {
   const [page, setPage] = useStickyState('welcome', 'page');
   const [progress, setProgress] = useStickyState(0, 'progress');
-  const [stickyAnswer, setStickyAnswer] = useStickyState(
-    '',
-    'assignment-answer'
+  const [answer, setAnswer] = useStickyState('', 'assignment-answer');
+  const [applicationVersion, setApplicationVersion] = useStickyState(
+    getRandomInt(1, 3),
+    'application-version'
   );
 
   return (
@@ -27,13 +29,16 @@ let App = () => {
       <Assignment
         show={page === 'assignment'}
         setPage={setPage}
-        setStickyAnswer={setStickyAnswer}
+        setStickyAnswer={setAnswer}
         setProgress={setProgress}
+        applicationVersion={applicationVersion}
       />
       <Survey
         show={page === 'survey'}
         setPage={setPage}
         setProgress={setProgress}
+        answer={answer}
+        applicationVersion={applicationVersion}
       />
       <ThankYou show={page === 'thankyou'} />
     </>

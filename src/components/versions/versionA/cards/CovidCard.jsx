@@ -9,7 +9,7 @@ import {
   StatNumber
 } from '@chakra-ui/core';
 
-import { useApiUrl } from '../../hooks/common';
+import { useApiUrl } from '../../../../hooks/common';
 
 const CovidCard = ({ data }) => {
   const API_URL = useApiUrl();

@@ -1,44 +1,70 @@
 import React, { useState } from 'react';
-import { Image, Text, Box, Button, Radio, RadioGroup } from '@chakra-ui/core';
+import {
+  Image,
+  Text,
+  Box,
+  Button,
+  Radio,
+  RadioGroup,
+  Input,
+  useToast
+} from '@chakra-ui/core';
 
 import { useApiUrl } from '../../hooks/common';
 
 const CardQuestion = ({ data, sendValue }) => {
   const API_URL = useApiUrl();
-  const [value, setValue] = useState(0);
+  const toast = useToast();
+  const [value, setValue] = useState('');
 
-  let { text, order, image } = data;
+  let { text, identifier, type, image } = data;
+
+  const handleSubmit = () => {
+    if (value == null || value == '') {
+      toast({
+        title: 'An error occurred.',
+        description: 'Please answer the question before proceeding.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+    } else {
+      sendValue(identifier, value);
+      setValue('');
+    }
+  };
 
   return (
     <>
-      <Box
-        m={[2, 10, 30, 50]}
-        p={[2, 2, 30, 30]}
-        textAlign="center"
-        borderColor="blue.500"
-        borderWidth={10}
-      >
-        <Text mb={10} fontSize={['l', 'l', 'xl', 'xl']}>
-          {text}
-        </Text>
-        <Image
-          w={['100%', '80%', '60%', '40%']}
-          rounded="md"
-          src={API_URL + image.url}
-          margin="auto"
-          mb={10}
-        />
+      <Text mb={10} fontSize={['l', 'l', 'xl', 'xl']}>
+        {text}
+      </Text>
+      <Image
+        w={['100%', '80%', '60%', '40%']}
+        rounded="md"
+        src={API_URL + image.url}
+        margin="auto"
+        mb={10}
+      />
+      {type === 'recall' ? (
         <RadioGroup
           isInline
           value={value}
           onChange={(e) => setValue(e.target.value)}
         >
-          <Radio value="1">Yes</Radio>
-          <Radio value="2">No</Radio>
+          <Radio value="yes">Yes</Radio>
+          <Radio value="no">No</Radio>
         </RadioGroup>
-        <Box textAlign="center" mt={50} mb={50}>
-          <Button onClick={sendValue(value)}>Save answer and proceed</Button>
-        </Box>
+      ) : (
+        <Input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Type your asnwer here"
+          size="sm"
+        />
+      )}
+      <Box textAlign="center" mt={50} mb={50}>
+        <Button onClick={handleSubmit}>Save answer and proceed</Button>
       </Box>
     </>
   );

@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import { Box, Flex, Text, Textarea, Button } from '@chakra-ui/core';
+import { Box, Flex, Text, Textarea, Button, useToast } from '@chakra-ui/core';
 
-import CovidCardSet from './cards/CovidCardSet';
-import HUSCardSet from './cards/HUSCardSet';
+import VersionA from './versions/versionA/VersionA';
+import VersionB from './versions/versionB/VersionB';
+import VersionC from './versions/versionC/VersionC';
 
-const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
+const Assignment = ({
+  applicationVersion,
+  show,
+  setPage,
+  setStickyAnswer,
+  setProgress
+}) => {
   const [answer, setAnswer] = useState('');
+  const toast = useToast();
 
   if (!show) {
     return null;
@@ -14,18 +22,20 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
   let handleInputChange = (e) => {
     let inputValue = e.target.value;
     setAnswer(inputValue);
-    console.log(answer);
   };
 
   let handleSubmit = () => {
-    console.log('submit');
-
-    console.log(answer);
-    if (answer.length < 2) {
-      // TODO: show info to user that answer is too short
+    if (answer.length < 50) {
+      toast({
+        title: 'An error occurred.',
+        description: 'Please answer the question with at least 50 characters.',
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
       return;
     }
-    /* update state and redirect user to survey page */
+
     setPage('survey');
     setStickyAnswer(answer);
     setProgress(66);
@@ -34,13 +44,19 @@ const Assignment = ({ show, setPage, setStickyAnswer, setProgress }) => {
   return (
     <>
       <Flex justify="center" p={10} direction="row">
-        <Text fontSize="4xl">
-          Check out the cards and complete the following assignment
+        <Text fontSize="2xl">
+          Study each of these cards about the Covid-19 situation in Finland and
+          then answer the question below.
         </Text>
       </Flex>
 
-      <HUSCardSet></HUSCardSet>
-      <CovidCardSet></CovidCardSet>
+      {applicationVersion === 1 ? (
+        <VersionA></VersionA>
+      ) : applicationVersion === 2 ? (
+        <VersionB></VersionB>
+      ) : (
+        <VersionC></VersionC>
+      )}
 
       <Flex justify="center" direction="row">
         <Text fontSize="xl">
