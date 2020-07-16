@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Box, Text } from '@chakra-ui/core';
 import { gql, useMutation } from '@apollo/client';
 
+import { buildJsonFromData } from '../utils/jsonBuilder';
 import { useStickyState } from '../hooks/common';
 
 import SurveySlider from './questions/SurveySlider';
@@ -11,28 +12,17 @@ import DemoGraphicInfo from './questions/DemoGraphicInfo';
 const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   // TODO: add variables
   const SEND_USER_DATA = gql`
-    mutation {
-      createAnswer(
-        input: {
-          data: {
-            age: "10-20"
-            assignment_answer: "it will get better"
-            question_1: "yes"
-            question_2: "no"
-          }
-        }
-      ) {
+    mutation sendData($data: JSON!) {
+      createAnswer(input: { data: { data: $data } }) {
         answer {
-          age
-          assignment_answer
-          question_1
-          question_2
+          data
         }
       }
     }
   `;
 
   // TODO: add useMutation hook
+  const [sendData, { data, loading, error }] = useMutation(SEND_USER_DATA);
 
   const [cardQuestionsDone, setCardQuestionsDone] = useStickyState(
     false,
@@ -59,13 +49,20 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   };
 
   let sendDataToStrapi = () => {
-    console.log('sending data...');
+    const jsonObject = buildJsonFromData(
+      applicationVersion,
+      answer,
+      demoGraphicInfo,
+      surveyData
+    );
 
-    //TODO: gather all the data into a GraphQL mutation and send the mutation.
+    console.log(jsonObject);
+    sendData({ variables: { data: jsonObject } });
+    console.log(data);
 
-    console.log('data sent');
-    setPage('thankyou');
-    setProgress(100);
+    // console.log('data sent');
+    // setPage('thankyou');
+    // setProgress(100);
   };
 
   return (
