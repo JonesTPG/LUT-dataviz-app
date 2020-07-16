@@ -9,17 +9,17 @@ export const validateDemoGraphics = (
   livedInFinland
 ) => {
   if (
-    age == '' ||
-    gender == '' ||
-    education == '' ||
-    englishFirst == '' ||
-    country == '' ||
-    livedInFinland == ''
+    age === '' ||
+    gender === '' ||
+    education === '' ||
+    englishFirst === '' ||
+    country === '' ||
+    livedInFinland === ''
   ) {
     return false;
-  } else if (education == 'Other' && otherEducation == '') {
+  } else if (education === 'Other' && otherEducation === '') {
     return false;
-  } else if (englishFirst == 'no' && englishFluency == '') {
+  } else if (englishFirst === 'no' && englishFluency === '') {
     return false;
   } else {
     return true;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Box, Text } from '@chakra-ui/core';
 import { gql, useMutation } from '@apollo/client';
