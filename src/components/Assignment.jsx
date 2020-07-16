@@ -44,8 +44,9 @@ const Assignment = ({
   return (
     <>
       <Flex justify="center" p={10} direction="row">
-        <Text fontSize="4xl">
-          Check out the cards and complete the following assignment
+        <Text fontSize="2xl">
+          Study each of these cards about the Covid-19 situation in Finland and
+          then answer the question below.
         </Text>
       </Flex>
 

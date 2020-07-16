@@ -107,7 +107,7 @@ const DemoGraphicInfo = ({ sendData }) => {
       <Divider></Divider>
 
       <Flex justifyContent="space-evenly">
-        <Text>Education</Text>
+        <Text>Highest education</Text>
         <Box>
           <Select
             onChange={(e) => setEducation(e.target.value)}
@@ -155,8 +155,8 @@ const DemoGraphicInfo = ({ sendData }) => {
         <>
           <Flex justifyContent="space-evenly">
             <Text>
-              What is your level of fluency in a scale of 1-5 where 1 is not at
-              all fluent and 5 is extremely fluent?
+              What is your level of English fluency in a scale of 1-5 where 1 is
+              not at all fluent and 5 is extremely fluent?
             </Text>
             <RadioGroup
               isInline

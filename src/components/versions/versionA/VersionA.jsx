@@ -12,7 +12,6 @@ Application version A: cards are in order without story elements.
 const VersionA = () => {
   return (
     <>
-      <p>application version A</p>
       <HUSCardSet></HUSCardSet>
       <CovidCardSet></CovidCardSet>
     </>
