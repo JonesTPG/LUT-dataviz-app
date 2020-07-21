@@ -10,7 +10,6 @@ import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
 const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
-  // TODO: add variables
   const SEND_USER_DATA = gql`
     mutation sendData($data: JSON!) {
       createAnswer(input: { data: { data: $data } }) {
@@ -21,7 +20,6 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     }
   `;
 
-  // TODO: add useMutation hook
   const [sendData, { data, loading, error }] = useMutation(SEND_USER_DATA);
 
   const [cardQuestionsDone, setCardQuestionsDone] = useStickyState(
@@ -48,6 +46,7 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     setSurveyData([...surveyData, { identifier, value }]);
   };
 
+  // TODO: find out why demographic info isn't working properly
   let sendDataToStrapi = () => {
     const jsonObject = buildJsonFromData(
       applicationVersion,
@@ -59,6 +58,8 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     console.log(jsonObject);
     sendData({ variables: { data: jsonObject } });
     console.log(data);
+
+    //TODO: uncomment these and test the whole process
 
     // console.log('data sent');
     // setPage('thankyou');
