@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  app:
+    build: ./app
+    ports:
+      - "3000:80"
+    restart: always
+    container_name: app
+  strapi:
+    build: ./api
+    ports:
+      - "3001:1337"
+    restart: always
+    container_name: strapi
+    volumes:
+      - "strapimedia:/app/public/uploads"
+  mongo:
+    image: mongo:4.2.8-bionic
+    ports:
+      - "3002:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin #<--- change to your values
+      MONGO_INITDB_ROOT_PASSWORD: admin #<--- change to your values
+    container_name: mongo
+    volumes:
+      - "mongodata:/data/db"
+
+volumes:
+  mongodata:
+  strapimedia:
