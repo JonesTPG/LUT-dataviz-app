@@ -1,5 +1,7 @@
 # Card App
 
+**Documentation regarding the whole system's infrastructure and setting up a new instance of datacardulator can be found** [here:](./misc/docs/INSTALLATION.md)
+
 ## Running the application
 
 ### Docker

@@ -1,1 +1,0 @@
-- handle data sending to Strapi CMS
