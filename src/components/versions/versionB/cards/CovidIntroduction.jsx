@@ -17,7 +17,7 @@ const CovidIntroduction = () => {
         </Text>
         <Text mt={5}>
           Different regions of Finland saw varying levels of infection of
-          COVID-19. These could be explained by regional differences, such as
+          Covid-19. These could be explained by regional differences, such as
           population density.
         </Text>
       </Box>

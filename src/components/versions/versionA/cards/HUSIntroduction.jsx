@@ -16,7 +16,7 @@ const HUSIntroduction = () => {
           Helsinki Uusimaa region of Finland Card Collection Introduction
         </Text>
         <Text mt={5}>
-          This is cardset about Covid situation in Helsinki Uusimaa region of
+          This is cardset about Covid-19 situation in Helsinki Uusimaa region of
           Finland.
         </Text>
       </Box>
