@@ -17,6 +17,7 @@ let App = () => {
     getRandomInt(1, 3),
     'application-version'
   );
+  const [AMTCode, setAMTCode] = useStickyState('', 'AMTCode');
 
   return (
     <>
@@ -39,8 +40,9 @@ let App = () => {
         setProgress={setProgress}
         answer={answer}
         applicationVersion={applicationVersion}
+        setAMTCode={setAMTCode}
       />
-      <ThankYou show={page === 'thankyou'} />
+      <ThankYou show={page === 'thankyou'} AMTCode={AMTCode} />
     </>
   );
 };

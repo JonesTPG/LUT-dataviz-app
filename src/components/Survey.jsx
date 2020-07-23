@@ -4,12 +4,21 @@ import { Box, Text } from '@chakra-ui/core';
 import { gql, useMutation } from '@apollo/client';
 
 import { buildJsonFromData } from '../utils/jsonBuilder';
+import { generateRandomString } from '../utils/randomize';
+
 import { useStickyState } from '../hooks/common';
 
 import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
-const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
+const Survey = ({
+  show,
+  setPage,
+  setProgress,
+  answer,
+  applicationVersion,
+  setAMTCode
+}) => {
   const SEND_USER_DATA = gql`
     mutation sendData($data: JSON!) {
       createAnswer(input: { data: { data: $data } }) {
@@ -48,16 +57,24 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   };
 
   let sendDataToStrapi = (demoGraphicInfo) => {
+    //generate AMT Code for the user
+    const AMTCode = generateRandomString();
+    setAMTCode(AMTCode);
+
+    //build a valid JSON object from the data
     const jsonObject = buildJsonFromData(
       applicationVersion,
       answer,
       demoGraphicInfo,
-      surveyData
+      surveyData,
+      AMTCode
     );
 
     console.log('data object to be sent to strapi:' + jsonObject);
+    //send the data to strapi CMS
     sendData({ variables: { data: jsonObject } });
 
+    //direct the user to thank you page
     console.log('data sent');
     setPage('thankyou');
     setProgress(100);
