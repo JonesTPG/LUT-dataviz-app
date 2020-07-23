@@ -28,7 +28,7 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   );
 
   const [demoGraphicInfo, setDemoGraphicInfo] = useStickyState(
-    null,
+    {},
     'demographics'
   );
   const [surveyData, setSurveyData] = useStickyState([], 'survey-data');
@@ -37,17 +37,17 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     return null;
   }
 
+  // The local storage update seems to be synchronous, so we have to send the data to the sendDataToStrapi-function
   let getDemoGraphics = (data) => {
     setDemoGraphicInfo(data);
-    sendDataToStrapi();
+    sendDataToStrapi(data);
   };
 
   let getSurveyAnswer = (identifier, value) => {
     setSurveyData([...surveyData, { identifier, value }]);
   };
 
-  // TODO: find out why demographic info isn't working properly
-  let sendDataToStrapi = () => {
+  let sendDataToStrapi = (demoGraphicInfo) => {
     const jsonObject = buildJsonFromData(
       applicationVersion,
       answer,
@@ -55,15 +55,12 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
       surveyData
     );
 
-    console.log(jsonObject);
+    console.log('data object to be sent to strapi:' + jsonObject);
     sendData({ variables: { data: jsonObject } });
-    console.log(data);
 
-    //TODO: uncomment these and test the whole process
-
-    // console.log('data sent');
-    // setPage('thankyou');
-    // setProgress(100);
+    console.log('data sent');
+    setPage('thankyou');
+    setProgress(100);
   };
 
   return (
