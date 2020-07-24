@@ -1,0 +1,54 @@
+[
+  {
+    "applicationVersion": 3,
+    "assignmentAnswer": "fdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcv",
+    "demoGraphicInfo": {
+      "age": "65+",
+      "gender": "sfsdf",
+      "education": "Other",
+      "otherEducation": "dfg",
+      "englishFirst": "no",
+      "englishFluency": "5",
+      "country": "dfg",
+      "livedInFinland": "no"
+    },
+    "surveyData": [
+      { "identifier": 1, "value": "no" },
+      { "identifier": 2, "value": "hjkhkgjghj" },
+      { "identifier": 3, "value": "yes" },
+      { "identifier": 4, "value": "yes" },
+      { "identifier": 5, "value": "yes" },
+      { "identifier": 6, "value": "no" },
+      { "identifier": 7, "value": "hkgjgjg" },
+      { "identifier": 8, "value": "khkjhkhjk" },
+      { "identifier": 9, "value": "fhfhghj" }
+    ],
+    "AMTCode": "eej010jb"
+  },
+  {
+    "applicationVersion": 3,
+    "assignmentAnswer": "fdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcvfdfghgsfvxcv",
+    "demoGraphicInfo": {
+      "age": "65+",
+      "gender": "sfsdf",
+      "education": "Other",
+      "otherEducation": "dfg",
+      "englishFirst": "no",
+      "englishFluency": "5",
+      "country": "dfg",
+      "livedInFinland": "no"
+    },
+    "surveyData": [
+      { "identifier": 1, "value": "no" },
+      { "identifier": 2, "value": "hjkhkgjghj" },
+      { "identifier": 3, "value": "yes" },
+      { "identifier": 4, "value": "yes" },
+      { "identifier": 5, "value": "yes" },
+      { "identifier": 6, "value": "no" },
+      { "identifier": 7, "value": "hkgjgjg" },
+      { "identifier": 8, "value": "khkjhkhjk" },
+      { "identifier": 9, "value": "fhfhghj" }
+    ],
+    "AMTCode": "eej010jb"
+  }
+]
