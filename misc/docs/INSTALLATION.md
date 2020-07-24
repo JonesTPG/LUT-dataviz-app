@@ -33,7 +33,7 @@ Download the latest source code from the master branch of https://github.com/Jon
 
 ### docker-compose
 
-The only thing that needs to be configured to docker-compose.yml file is the database-related information. If you plan to run this setup in a public server, it is stronly recommended to change the default values provided in the files. Refer to the docker-compose.yml file below:
+The only thing that needs to be configured to docker-compose.yml file is the database-related information. If you plan to run this setup in a public server, it is strongly recommended to change the default values provided in the files. Refer to the docker-compose.yml file below:
 
 [Example docker-compose.yml](./files/docker-compose.yml)
 
@@ -54,10 +54,6 @@ When the above configurations are made, you are ready to run the application wit
 and then run with
 
 **docker-compose up -d**
-
-## Uploading initial data to database
-
-TBD.
 
 ## Setting up the nginx reverse proxy
 
