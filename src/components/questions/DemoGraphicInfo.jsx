@@ -28,7 +28,6 @@ const DemoGraphicInfo = ({ sendData }) => {
   const toast = useToast();
 
   const handleSubmit = () => {
-    //TODO: validate data, display toast on failure
     if (
       validateDemoGraphics(
         age,

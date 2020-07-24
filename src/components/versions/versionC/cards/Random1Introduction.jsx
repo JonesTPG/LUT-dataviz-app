@@ -13,9 +13,9 @@ const Random1Introduction = () => {
         bg="gray.200"
       >
         <Text mt={5} fontSize="xl" fontWeight="semibold" lineHeight="short">
-          Covid Cardset
+          Covid-19 Cardset
         </Text>
-        <Text mt={5}>This is Covid Cardset A.</Text>
+        <Text mt={5}>This is Covid-19 Cardset A.</Text>
       </Box>
     </>
   );

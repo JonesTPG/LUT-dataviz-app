@@ -22,7 +22,7 @@ const RandomCardSet2 = ({ cardSet }) => {
         >
           <Random2Introduction></Random2Introduction>
           {cardSet.map((card) =>
-            card.__typename == 'HusCovidCard' ? (
+            card.__typename === 'HusCovidCard' ? (
               <HUSCard key={card.id} data={card}></HUSCard>
             ) : (
               <CovidCard key={card.id} data={card}></CovidCard>

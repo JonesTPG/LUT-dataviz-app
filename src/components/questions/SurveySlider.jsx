@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-import { Box, Button, Text } from '@chakra-ui/core';
 import { gql, useQuery } from '@apollo/client';
 
 import CardQuestion from './CardQuestion';
@@ -44,8 +43,6 @@ const SurveySlider = ({ sendData, sendCardQuestionsDone }) => {
   if (loading) return 'Loading...';
   if (error) return `${error.message}`;
 
-  //TODO: randomize question array. save the randomization sequence
-  //so that refresh wont reset the order
   const surveyQuestions = [...data.questions];
 
   if (surveyQuestions.length === 0) {

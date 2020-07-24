@@ -1,38 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Box, Text } from '@chakra-ui/core';
 import { gql, useMutation } from '@apollo/client';
+
+import { buildJsonFromData } from '../utils/jsonBuilder';
+import { generateRandomString } from '../utils/randomize';
 
 import { useStickyState } from '../hooks/common';
 
 import SurveySlider from './questions/SurveySlider';
 import DemoGraphicInfo from './questions/DemoGraphicInfo';
 
-const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
-  // TODO: add variables
+const Survey = ({
+  show,
+  setPage,
+  setProgress,
+  answer,
+  applicationVersion,
+  setAMTCode
+}) => {
   const SEND_USER_DATA = gql`
-    mutation {
-      createAnswer(
-        input: {
-          data: {
-            age: "10-20"
-            assignment_answer: "it will get better"
-            question_1: "yes"
-            question_2: "no"
-          }
-        }
-      ) {
+    mutation sendData($data: JSON!) {
+      createAnswer(input: { data: { data: $data } }) {
         answer {
-          age
-          assignment_answer
-          question_1
-          question_2
+          data
         }
       }
     }
   `;
 
-  // TODO: add useMutation hook
+  const [sendData, { data, loading, error }] = useMutation(SEND_USER_DATA);
 
   const [cardQuestionsDone, setCardQuestionsDone] = useStickyState(
     false,
@@ -40,7 +37,7 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
   );
 
   const [demoGraphicInfo, setDemoGraphicInfo] = useStickyState(
-    null,
+    {},
     'demographics'
   );
   const [surveyData, setSurveyData] = useStickyState([], 'survey-data');
@@ -49,20 +46,35 @@ const Survey = ({ show, setPage, setProgress, answer, applicationVersion }) => {
     return null;
   }
 
+  // The local storage update seems to be synchronous, so we have to send the data to the sendDataToStrapi-function
   let getDemoGraphics = (data) => {
     setDemoGraphicInfo(data);
-    sendDataToStrapi();
+    sendDataToStrapi(data);
   };
 
   let getSurveyAnswer = (identifier, value) => {
     setSurveyData([...surveyData, { identifier, value }]);
   };
 
-  let sendDataToStrapi = () => {
-    console.log('sending data...');
+  let sendDataToStrapi = (demoGraphicInfo) => {
+    //generate AMT Code for the user
+    const AMTCode = generateRandomString();
+    setAMTCode(AMTCode);
 
-    //TODO: gather all the data into a GraphQL mutation and send the mutation.
+    //build a valid JSON object from the data
+    const jsonObject = buildJsonFromData(
+      applicationVersion,
+      answer,
+      demoGraphicInfo,
+      surveyData,
+      AMTCode
+    );
 
+    console.log('data object to be sent to strapi:' + jsonObject);
+    //send the data to strapi CMS
+    sendData({ variables: { data: jsonObject } });
+
+    //direct the user to thank you page
     console.log('data sent');
     setPage('thankyou');
     setProgress(100);

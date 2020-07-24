@@ -49,3 +49,9 @@ export const generateRandomQuestionOrder = () => {
   }
   return array;
 };
+
+//source: https://dev.to/oyetoket/fastest-way-to-generate-random-strings-in-javascript-2k5a
+
+export const generateRandomString = () => {
+  return Math.random().toString(20).substr(2, 8);
+};
